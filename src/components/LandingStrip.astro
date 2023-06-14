@@ -1,0 +1,60 @@
+---
+export interface Props {
+  title: string
+  image: string
+  alt: string
+  cta: { text: string; link: string }
+}
+
+const { title, image, alt, cta } = Astro.props
+
+const imageUrlString = "url(" + image + ")"
+---
+
+<section class="wrapper flow">
+  <h2>{title}</h2>
+  <div class="flow">
+    <img src={image} alt={alt} />
+    <slot />
+    <button>{cta.text}</button>
+  </div>
+</section>
+
+<style define:vars={{ imageUrlString }}>
+  img {
+    display: none;
+  }
+  section {
+    padding: 3rem;
+    background-image: var(--imageUrlString);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  h2 {
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  section > div {
+    padding-right: 50%;
+  }
+  button {
+    background-color: var(--clr-accent);
+    padding: 1rem 2rem;
+    border-radius: 100vw;
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+  }
+
+  @media only screen and (max-width: 682px) {
+    img {
+      display: block;
+    }
+    section {
+      background: none;
+    }
+    section > div {
+      padding-right: 0;
+    }
+  }
+</style>

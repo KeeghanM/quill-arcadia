@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Hero from "../components/Hero.astro"
+import LandingStrip from "../components/LandingStrip.astro"
+import Anchor from "../components/Anchor.astro"
+import ContactForm from "../components/ContactForm.astro"
+---
+
+<Layout
+  title="ArcAide - A new tool for storytellers of all kinds"
+  description="A good meta description"
+>
+  <Hero />
+  <Anchor id="features" />
+  <LandingStrip
+    title="Craft Compelling & Engaging Stories"
+    image="./arcs.png"
+    alt="An adventuring party, in ancient ruins, gathered around a glowing blue orb, wrapped in metal bands."
+    cta={{
+      "text": "See All Features",
+      "link": "#features",
+    }}
+  >
+    <p>
+      With ArcAide, give structure to your narratives, enrich your worlds, and
+      keep your audience captivated. Utilize our unique Arc framework to weave
+      together your 'things' - be it characters, locations, or items - and
+      easily reference them later. With every new Arc, a new story unfolds.
+    </p>
+  </LandingStrip>
+
+  <LandingStrip
+    title="Perfect for D&D Dungeon Masters and Storytellers of All Levels"
+    image="./diverse_party.png"
+    alt="A painting of a diverse group of D&D Characters, from fresh faced to grizzled adventurers."
+    cta={{
+      "text": "Get Started Now",
+      "link": "/signup",
+    }}
+  >
+    <p>
+      Whether you're a novice or an experienced dungeon master, author, or
+      storyteller, ArcAide simplifies and enhances your creative process. Our
+      tool is easy to use, fun, and capable of handling the complexity of your
+      imagination.
+    </p>
+  </LandingStrip>
+  <LandingStrip
+    title="Your One-Stop Solution for World Building"
+    image="./wizard_portals_3.png"
+    alt=""
+    cta={{
+      "text": "Sign Up for Free",
+      "link": "/signup",
+    }}
+  >
+    <p>
+      ArcAide is more than just a writing tool. It's your personal assistant,
+      helping you manage and organize your narratives, providing seamless
+      switching between story arcs and ensuring a smooth and enjoyable
+      experience for both the writer and the end user.
+    </p>
+  </LandingStrip>
+  <Anchor id="contact" />
+  <ContactForm />
+</Layout>
+
+<style></style>

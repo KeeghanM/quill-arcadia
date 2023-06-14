@@ -1,0 +1,155 @@
+---
+import { Icon } from "astro-icon"
+---
+
+<div id="navBar">
+  <div>
+    <h2>ArcAide</h2>
+  </div>
+  <div>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/#features">Features</a>
+        </li>
+        <li>
+          <a href="/#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div>
+    <a class="button" href="/dashboard"
+      >Dashboard <Icon name="mdi:chevron-double-right" /></a
+    >
+  </div>
+</div>
+
+<script>
+  let navBar = document.querySelector("div#navBar")
+  window.addEventListener("scroll", function () {
+    let scrollPosition = window.scrollY
+    if (!navBar) return
+    if (scrollPosition >= 200) {
+      navBar.classList.add("scrolled")
+    } else {
+      navBar.classList.remove("scrolled")
+    }
+  })
+</script>
+
+<style>
+  div#navBar {
+    position: fixed;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100vw;
+    display: flex;
+    transition: background-color 1500ms ease;
+    justify-content: space-around;
+    padding: 1rem;
+    align-items: center;
+  }
+  :global(div#navBar.scrolled) {
+    background-color: var(--clr-secondary) !important;
+    color: #fff;
+  }
+  :global(div#navBar.scrolled) h2 {
+    transition: color 1500ms ease;
+    color: #fff !important;
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+  }
+  nav li {
+    position: relative;
+  }
+  nav li::after {
+    content: "";
+    background: var(--clr-primary);
+    width: 0%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    transition: width 300ms;
+  }
+  li > a {
+    color: var(--clr-secondary);
+    text-decoration: none;
+    transition: color 1500ms ease;
+    font-size: var(--fs-600);
+  }
+  :global(div#navBar.scrolled) li > a {
+    color: var(--clr-text);
+  }
+
+  nav li:hover {
+    cursor: pointer;
+  }
+  nav li:hover::after {
+    width: 100%;
+  }
+
+  a.button {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 100vw;
+    border: none;
+    position: relative;
+    background: var(--gdr-l2r);
+    color: var(--clr-text);
+    isolation: isolate;
+  }
+  a.button::before {
+    content: "";
+    position: absolute;
+    border-radius: 500vw;
+    inset: 1px;
+    background: var(--clr-background);
+    z-index: -1;
+  }
+
+  a.button::after {
+    content: "";
+    position: absolute;
+    border-radius: 500vw;
+    background: var(--clr-primary);
+    z-index: -2;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+
+  a.button:hover::after {
+    opacity: 1;
+  }
+  [astro-icon] {
+    transition: color 300ms;
+    width: 30px;
+  }
+  a.button:hover [astro-icon] {
+    color: var(--clr-primary);
+  }
+
+  @media only screen and (max-width: 425px) {
+    nav {
+      display: none;
+    }
+  }
+</style>
