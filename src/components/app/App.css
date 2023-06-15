@@ -1,0 +1,27 @@
+.stories {
+  display: grid;
+  gap: 1rem;
+  width: min(100% - 3rem, 40ch);
+  margin: auto;
+  padding-top: 4rem;
+}
+.story-card {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: var(--clr-secondary);
+}
+.story-card .name {
+  font-family: var(--ff-accent);
+  font-size: var(--fs-600);
+}
+.story-card .edit-date {
+  font-size: var(--fs-300);
+}
+.story-card button {
+  margin-top: 1rem;
+  background: var(--clr-accent);
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border-radius: 100vw;
+}

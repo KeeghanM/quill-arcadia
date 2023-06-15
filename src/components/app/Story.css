@@ -1,0 +1,8 @@
+ul.sidebar {
+  height: 100vh;
+  width: 150px;
+  background: var(--clr-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
