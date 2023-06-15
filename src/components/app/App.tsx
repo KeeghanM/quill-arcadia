@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js"
-import "./app.css"
+import "./App.css"
 import Story from "./Story"
 
 export default function App() {
