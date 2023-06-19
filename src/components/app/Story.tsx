@@ -10,12 +10,25 @@ export default function Story(props: storyProps) {
   const id = props.id
   const exit = props.reset
 
-  const [screen, setScreen] = createSignal("Arcs")
+  const [screen, setScreen] = createSignal("arcs")
 
   const sidebarItems = [
     { name: "Arcs", screenId: "arcs" },
     { name: "Collections", screenId: "collections" },
     { name: "Things", screenId: "things" },
+  ]
+
+  const arcs = [
+    {
+      name: "Intro",
+      information: {
+        hook: "",
+        goal: "",
+        challenge: "",
+        antagonist: "",
+      },
+      collections: [],
+    },
   ]
 
   return (
@@ -24,11 +37,21 @@ export default function Story(props: storyProps) {
         {sidebarItems.map((item) => (
           <li onclick={() => setScreen(item.screenId)}>{item.name}</li>
         ))}
-        <li>
+        <li class="close">
           <button onclick={exit}>Close Story</button>
         </li>
       </ul>
-      <main></main>
+      <main>
+        {screen() == "arcs" ? (
+          <p>Arcs</p>
+        ) : screen() == "collections" ? (
+          <p>Collections</p>
+        ) : screen() == "things" ? (
+          <p>Things</p>
+        ) : (
+          <p>Select a screen...</p>
+        )}
+      </main>
     </>
   )
 }
