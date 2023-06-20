@@ -17,3 +17,48 @@ main {
   display: grid;
   place-items: center;
 }
+.screenTitle {
+  background: var(--clr-background);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+.arcContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  width: 100%;
+  padding: 2rem;
+}
+.arcCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr-secondary);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+.arcName {
+  font-size: var(--fs-600);
+  font-weight: 700;
+  color: var(--clr-primary);
+}
+.subArcTitle {
+  font-size: var(--fs-400);
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.subArcs {
+  max-height: 150px;
+  overflow-y: auto;
+}
+.newArc {
+  background: var(--clr-accent);
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border-radius: 100vw;
+}

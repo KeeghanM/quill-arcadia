@@ -1,4 +1,5 @@
 import { createSignal } from "solid-js"
+import { Arcs } from "./dummyValues.js"
 import "./Story.css"
 
 type storyProps = {
@@ -18,18 +19,19 @@ export default function Story(props: storyProps) {
     { name: "Things", screenId: "things" },
   ]
 
-  const arcs = [
-    {
-      name: "Intro",
-      information: {
-        hook: "",
-        goal: "",
-        challenge: "",
-        antagonist: "",
-      },
-      collections: [],
-    },
-  ]
+  const arcs = Arcs
+
+  const truncate = (str: string, n: number, useWordBoundary: boolean) => {
+    if (str.length <= n) {
+      return str
+    }
+    const subString = str.slice(0, n - 1) // the original check
+    return (
+      (useWordBoundary
+        ? subString.slice(0, subString.lastIndexOf(" "))
+        : subString) + "..."
+    )
+  }
 
   return (
     <>
@@ -43,7 +45,42 @@ export default function Story(props: storyProps) {
       </ul>
       <main>
         {screen() == "arcs" ? (
-          <p>Arcs</p>
+          <>
+            <div class="screenTitle">
+              <h1>Arcs</h1>
+              <button class="newArc">Add New</button>
+            </div>
+            <div class="arcContainer">
+              {arcs.map((arc) => (
+                <div class="arcCard">
+                  <p class="arcName">{arc.name}</p>
+                  <p class="arcHook">
+                    {truncate(arc.information["hook"], 80, true)}
+                  </p>
+                  <p class="subArcTitle">Arcs</p>
+                  <ul class="subArcs">
+                    {arc.SubArcs.map((arc) => {
+                      return <li>{arc.name}</li>
+                    })}
+                  </ul>
+                </div>
+              ))}
+              {arcs.map((arc) => (
+                <div class="arcCard">
+                  <p class="arcName">{arc.name}</p>
+                  <p class="arcHook">
+                    {truncate(arc.information["hook"], 80, true)}
+                  </p>
+                  <p class="subArcTitle">Arcs</p>
+                  <ul class="subArcs">
+                    {arc.SubArcs.map((arc) => {
+                      return <li>{arc.name}</li>
+                    })}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </>
         ) : screen() == "collections" ? (
           <p>Collections</p>
         ) : screen() == "things" ? (
