@@ -35,7 +35,7 @@ if (!session) return Astro.redirect("/signup")
 </script>
 
 <style>
-  button {
+  button#logout {
     margin-left: 1.5rem;
     font-size: var(--fs-400);
     color: white;
@@ -49,5 +49,6 @@ if (!session) return Astro.redirect("/signup")
     border: none;
     bottom: 2rem;
     padding: 0;
+    z-index: 2;
   }
 </style>

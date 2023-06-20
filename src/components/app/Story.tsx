@@ -3,7 +3,7 @@ import "./Story.css"
 
 type storyProps = {
   id: string
-  reset: () => null
+  reset: () => void
 }
 
 export default function Story(props: storyProps) {
