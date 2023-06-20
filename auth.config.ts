@@ -5,7 +5,7 @@ export default {
     auth0({
       clientId: import.meta.env.AUTH0_CLIENT_ID,
       clientSecret: import.meta.env.AUTH0_CLIENT_SECRET,
-      issuer: import.meta.env.AUTH0_DOMAIN,
+      issuer: import.meta.env.AUTH0_ISSUER,
     }),
   ],
 }

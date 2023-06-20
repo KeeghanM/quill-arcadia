@@ -1,13 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import { SignIn } from "auth-astro/components"
 ---
 
 <Layout title="Signup" description="This is the home page" noNav={false}>
   <div>
-    <SignIn>SignIn</SignIn>
+    <button>Register</button>
   </div>
 </Layout>
+
+<script>
+  const { signIn, signOut } = await import("auth-astro/client")
+  document
+    .querySelector("button")
+    ?.addEventListener("click", () => signIn("auth0"))
+</script>
 
 <style>
   div {
