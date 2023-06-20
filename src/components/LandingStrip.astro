@@ -16,9 +16,17 @@ const imageUrlString = "url(/" + image + ")"
   <div class="flow">
     <img src={"/" + image} alt={alt} />
     <slot />
-    <button>{cta.text}</button>
+    <button class="cta" data-destination={cta.link}>{cta.text}</button>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll("button.cta").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      window.location.href = btn.dataset.destination
+    })
+  })
+</script>
 
 <style define:vars={{ imageUrlString }}>
   img {
@@ -48,6 +56,7 @@ const imageUrlString = "url(/" + image + ")"
   }
   button:hover {
     color: var(--clr-secondary);
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 682px) {

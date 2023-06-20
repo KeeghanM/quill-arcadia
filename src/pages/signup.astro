@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { SignIn } from "auth-astro/components"
+---
+
+<Layout title="Signup" description="This is the home page" noNav={false}>
+  <div>
+    <SignIn>SignIn</SignIn>
+  </div>
+</Layout>
+
+<style>
+  div {
+    margin-top: 100px;
+  }
+</style>

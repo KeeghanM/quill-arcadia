@@ -12,9 +12,11 @@
   "dependencies": {
     "@astrojs/solid-js": "^2.2.0",
     "@astrojs/vercel": "^3.5.0",
+    "@auth/core": "^0.5.1",
     "@planetscale/database": "^1.7.0",
     "astro": "^2.6.5",
     "astro-icon": "^0.8.1",
+    "auth-astro": "^3.0.1",
     "solid-js": "^1.7.6"
   }
 }
