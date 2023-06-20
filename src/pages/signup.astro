@@ -1,22 +1,86 @@
 ---
+import LandingStrip from "../components/LandingStrip.astro"
 import Layout from "../layouts/Layout.astro"
+import { getSession } from "auth-astro/server"
+const session = await getSession(Astro.request)
 ---
 
 <Layout title="Signup" description="This is the home page" noNav={false}>
-  <div>
-    <button>Register</button>
-  </div>
+  {
+    session ? (
+      <>
+        <LandingStrip
+          title="Thanks for registering!"
+          cta={{ "text": "Go to dashboard", "link": "/dashboard" }}
+          image="./arcs.webp"
+          alt="An adventuring party, in ancient ruins, gathered around a glowing blue orb, wrapped in metal bands."
+        >
+          Welcome to ArcAide! We're excited to have you here. You can now go to
+          your dashboard and start creating your first Stories.
+        </LandingStrip>
+      </>
+    ) : (
+      <>
+        <div class="signup">
+          <div class="wrapper flow">
+            <h1>Ready to weave more engaging tales and epic adventures?</h1>
+            <p>
+              Arc-Aide is your personal assistant for creating, managing, and
+              organizing your narratives. Whether you're a Dungeon Master
+              preparing for your next campaign or an author looking to bring
+              your characters to life, Arc-Aide has you covered.
+            </p>
+            <h2>
+              Start crafting your world now for free! Experience one story with
+              unlimited Arcs at no cost.
+            </h2>
+            <p>
+              Want to bring even more magic to your narratives? For just £5 per
+              month, get unlimited Stories and access to advanced features
+              including generators for detailed character descriptions,
+              immersive tavern menus, comprehensive shop catalogues, and
+              interactive maps.
+            </p>
+            <button class="register">Register Now!</button>
+          </div>
+        </div>
+      </>
+    )
+  }
 </Layout>
 
 <script>
-  const { signIn, signOut } = await import("auth-astro/client")
+  const { signIn } = await import("auth-astro/client")
   document
-    .querySelector("button")
-    ?.addEventListener("click", () => signIn("auth0"))
+    .querySelectorAll("button.register")
+    .forEach((button) =>
+      button.addEventListener("click", () => signIn("auth0"))
+    )
 </script>
 
 <style>
-  div {
-    margin-top: 100px;
+  .signup {
+    padding-block: 150px;
+    background: url(./arcs.webp) no-repeat center center;
+    background-size: cover;
+  }
+  h1,
+  h2 {
+    font-size: var(--fs-600);
+  }
+  .wrapper {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+  }
+  button.register {
+    background: var(--clr-accent);
+    color: var(--clr-white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 500vw;
+    font-size: var(--fs-400);
+    font-weight: bold;
+    cursor: pointer;
+    margin: 1rem 0;
   }
 </style>
