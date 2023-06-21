@@ -16,7 +16,9 @@ export default function Arc(props: ArcProps) {
           <h2>SubArcs</h2>
           <ul class="subArcs">
             {arc().SubArcs.map((sub: ArcType) => (
-              <li onclick={() => props.openArc(sub)}>{sub.name}</li>
+              <li class="clickable" onclick={() => props.openArc(sub)}>
+                {sub.name}
+              </li>
             ))}
           </ul>
         </div>

@@ -11,7 +11,7 @@ li {
   margin: 0;
   list-style: none;
 }
-li:hover {
+li.clickable:hover {
   cursor: pointer;
   text-decoration: underline;
 }

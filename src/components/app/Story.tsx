@@ -11,7 +11,7 @@ type storyProps = {
   reset: () => void
 }
 
-export const ArcContext = createContext<ArcType | undefined>(undefined)
+export const ArcContext = createContext<ArcType>(undefined)
 
 export default function Story(props: storyProps) {
   const userId = props.id
@@ -38,6 +38,7 @@ export default function Story(props: storyProps) {
       <ul class="sidebar">
         {sidebarItems.map((item) => (
           <li
+            class="clickable"
             onclick={() => {
               setArc(undefined)
               setScreen(item.screenId)

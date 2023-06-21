@@ -39,7 +39,11 @@ export default function ArcCard(props: arcCardProps) {
       <p class="subArcTitle">Arcs</p>
       <ul class="subArcs">
         {arc.SubArcs?.map((subArc: ArcType) => {
-          return <li onclick={() => openArc(subArc)}>{subArc.name}</li>
+          return (
+            <li class="clickable" onclick={() => openArc(subArc)}>
+              {subArc.name}
+            </li>
+          )
         })}
       </ul>
     </div>
