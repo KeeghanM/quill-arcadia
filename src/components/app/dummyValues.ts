@@ -3,6 +3,7 @@ import type { ArcType } from "./types"
 export const Arcs: ArcType[] = [
   {
     name: "Silverhollow",
+    collections: [],
     information: {
       hook: "You've recently arrived in Silverhollow, a small town known for its peaceful living and close-knit community. However, beneath the surface, various troubles and mysteries are brewing.",
       goal: "Uncover the underlying issues in Silverhollow, resolve the conflicts, and ensure the town's safety and prosperity.",
@@ -14,6 +15,7 @@ export const Arcs: ArcType[] = [
     SubArcs: [
       {
         name: "The Lost Sword",
+        collections: [],
         information: {
           hook: "A local blacksmith has lost his legendary sword and suspects it was stolen.",
           goal: "Find and return the blacksmith's sword.",
@@ -25,6 +27,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Dragon's Egg",
+        collections: [],
         information: {
           hook: "A mysterious dragon egg appears in the town square, causing panic among the villagers.",
           goal: "Discover the origin of the dragon egg and ensure its safe return.",
@@ -36,6 +39,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Haunted Forest",
+        collections: [],
         information: {
           hook: "Children from the village have been disappearing into the nearby forest, which is rumored to be haunted.",
           goal: "Investigate the forest, find the missing children, and discover the truth behind the hauntings.",
@@ -47,6 +51,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Cursed Amulet",
+        collections: [],
         information: {
           hook: "You come into possession of a beautiful amulet, but it carries a dreadful curse.",
           goal: "Break the curse and free yourself from the amulet's grasp.",
@@ -58,6 +63,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Unseen Threat",
+        collections: [],
         information: {
           hook: "People in town have been falling inexplicably ill, with no known cause.",
           goal: "Discover the source of the illness and find a cure.",
@@ -71,6 +77,7 @@ export const Arcs: ArcType[] = [
   },
   {
     name: "Brimshale",
+    collections: [],
     information: {
       hook: "Brimshale, a thriving city of commerce, is suddenly plagued by a string of mysterious thefts and unexplained incidents.",
       goal: "Investigate the strange happenings, discover the cause, and restore peace in Brimshale.",
@@ -82,6 +89,7 @@ export const Arcs: ArcType[] = [
     SubArcs: [
       {
         name: "The Invisible Thief",
+        collections: [],
         information: {
           hook: "High-value goods are disappearing from the market, but there are no signs of a break-in.",
           goal: "Uncover the identity of the thief and stop the thefts.",
@@ -93,6 +101,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Rats' Rebellion",
+        collections: [],
         information: {
           hook: "The city's normally harmless rat population has become unnaturally aggressive, attacking citizens and damaging property.",
           goal: "Find out what's causing the rats' strange behavior and put an end to it.",
@@ -104,6 +113,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Shadowy Specter",
+        collections: [],
         information: {
           hook: "A ghostly apparition has been haunting the city streets at night, causing fear among the citizens.",
           goal: "Uncover the true nature of the specter and lay it to rest.",
@@ -117,6 +127,7 @@ export const Arcs: ArcType[] = [
   },
   {
     name: "Willows Peak",
+    collections: [],
     information: {
       hook: "In order to reach the ancient ruins, the party must cross the treacherous terrain of Willows Peak.",
       goal: "Navigate the dangers of the mountain and reach the other side safely.",
@@ -128,6 +139,7 @@ export const Arcs: ArcType[] = [
     SubArcs: [
       {
         name: "The Mountain's Fury",
+        collections: [],
         information: {
           hook: "As you ascend, the mountain seems to come alive, with rockslides, icy winds, and roars that sound suspiciously like a giant beast.",
           goal: "Survive the mountain's onslaught and reach the peak.",
@@ -141,6 +153,7 @@ export const Arcs: ArcType[] = [
   },
   {
     name: "Ancient Ruins",
+    collections: [],
     information: {
       hook: "The party finally arrives at the ancient ruins, a place filled with old magic, hidden treasures, and untold dangers.",
       goal: "Explore the ruins, discover its secrets, and retrieve the valuable artifacts rumored to be stored within.",
@@ -152,6 +165,7 @@ export const Arcs: ArcType[] = [
     SubArcs: [
       {
         name: "The Guardians' Test",
+        collections: [],
         information: {
           hook: "Statues of ancient warriors line the corridors of the ruins, and they spring to life as the party approaches.",
           goal: "Overcome the guardians to proceed deeper into the ruins.",
@@ -163,6 +177,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Labyrinth of Shadows",
+        collections: [],
         information: {
           hook: "The party finds themselves in a maze of corridors, where the walls seem to shift and shadows lurk at every corner.",
           goal: "Navigate the labyrinth and find the path leading to the heart of the ruins.",
@@ -174,6 +189,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Hall of Riddles",
+        collections: [],
         information: {
           hook: "A large chamber presents a series of riddles that the party must solve to proceed.",
           goal: "Solve the riddles to unlock the way forward.",
@@ -185,6 +201,7 @@ export const Arcs: ArcType[] = [
       },
       {
         name: "The Lich's Curse",
+        collections: [],
         information: {
           hook: "As the party approaches the heart of the ruins, they feel a powerful curse sapping their strength.",
           goal: "Lift the curse and confront the final guardian of the ruins.",
