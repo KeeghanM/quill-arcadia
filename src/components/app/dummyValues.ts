@@ -1,4 +1,6 @@
-export const Arcs = [
+import type { Arc } from "./types"
+
+export const Arcs: Arc[] = [
   {
     name: "Silverhollow",
     information: {

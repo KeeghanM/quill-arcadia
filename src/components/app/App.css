@@ -17,7 +17,7 @@
 .story-card .edit-date {
   font-size: var(--fs-300);
 }
-.story-card button {
+button {
   margin-top: 1rem;
   background: var(--clr-accent);
   border: none;
