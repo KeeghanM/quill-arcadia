@@ -87,7 +87,7 @@ main {
   font-weight: 700;
   margin-top: 1rem;
 }
-.subArcs {
+.maxHeight {
   max-height: 150px;
   overflow-y: auto;
 }

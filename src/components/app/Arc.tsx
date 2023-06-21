@@ -15,6 +15,7 @@ export default function Arc(props: ArcProps) {
   const [getCollection, setCollection] = createSignal<
     CollectionType | undefined
   >()
+  const [getThings, setThings] = createSignal<ThingType[]>([])
   const [getThing, setThing] = createSignal<ThingType | undefined>()
 
   const addCollection = () => {
@@ -28,6 +29,24 @@ export default function Arc(props: ArcProps) {
       arc().collections = getCollections()
     }
   }
+
+  const addThing = () => {
+    const name = prompt("Thing name?")
+    if (name) {
+      const newThing: ThingType = {
+        name,
+        information: {},
+      }
+      // @ts-ignore
+      getCollection().things = [...getCollection().things, newThing]
+      setCollection(getCollection())
+      setThings(getCollection().things)
+    }
+  }
+
+  createEffect(() => {
+    setThings(getCollection() ? getCollection().things : [])
+  })
 
   return (
     <div class="arc ">
@@ -65,10 +84,21 @@ export default function Arc(props: ArcProps) {
           ))}
         </ul>
       </div>
-      {/* <div class="section">
-        <h3>Thing</h3>
-        <p>{getThing()?.name}</p>
-      </div> */}
+      {getCollection() && (
+        <div class="section">
+          <div class="sectionTitle">
+            <h3>{getCollection()?.name}</h3>
+            <span onclick={addThing}>+</span>
+          </div>
+          <ul class="bullets">
+            {getThings().map((thing: ThingType) => (
+              <li class="clickable" onclick={() => setThing(thing)}>
+                {thing.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }
