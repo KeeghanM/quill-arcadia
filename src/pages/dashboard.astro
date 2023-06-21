@@ -25,7 +25,11 @@ if (!session) return Astro.redirect("/signup")
         ></path>
       </svg></button
     >
-    <App client:load userId={session} />
+    {
+      session?.user?.name ? (
+        <App client:load userId={session.user.name} />
+      ) : null
+    }
   </Auth>
 </Layout>
 

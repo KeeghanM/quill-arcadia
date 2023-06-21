@@ -2,6 +2,20 @@
   --sidebar-width: 200px;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 ul.sidebar {
   position: fixed;
   height: 100vh;
@@ -11,18 +25,10 @@ ul.sidebar {
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-  margin: 0;
 }
 ul.sidebar li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   margin-bottom: 1rem;
   font-size: var(--fs-600);
-}
-ul.sidebar li:hover {
-  text-decoration: underline;
-  cursor: pointer;
 }
 li.close {
   margin-top: 1rem;
@@ -85,7 +91,16 @@ main {
   max-height: 150px;
   overflow-y: auto;
 }
-.subArcs li:hover {
-  text-decoration: underline;
-  cursor: pointer;
+.subArcs li {
+  list-style: disc;
+  margin-left: 20px;
+}
+li .key {
+  font-weight: 700;
+  margin-right: 1rem;
+}
+.arc .section {
+  background: var(--clr-secondary);
+  border-radius: 15px;
+  padding: 1rem;
 }

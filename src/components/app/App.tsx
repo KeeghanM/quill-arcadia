@@ -2,8 +2,11 @@ import { createSignal } from "solid-js"
 import "./App.css"
 import Story from "./Story"
 
-export default function App(props) {
-  console.log(props.userId)
+type AppProps = {
+  userId: string
+}
+
+export default function App(props: AppProps) {
   const stories = [
     // { id: "1", name: "Jacileon", lastEdit: "10, Jan, 2021" },
     { id: "2", name: "Silverhollow", lastEdit: "15, Jun, 2023" },

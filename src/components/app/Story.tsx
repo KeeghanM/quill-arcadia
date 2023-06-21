@@ -1,9 +1,10 @@
-import type { Arc } from "./types"
+import type { ArcType } from "./types"
 
-import { createSignal } from "solid-js"
-import { Arcs } from "./dummyValues.js"
+import { createSignal, createEffect } from "solid-js"
+import { Arcs } from "./dummyValues"
 import "./Story.css"
-import ArcCard from "./ArcCard.jsx"
+import ArcCard from "./ArcCard"
+import Arc from "./Arc"
 
 type storyProps = {
   id: string
@@ -15,14 +16,14 @@ export default function Story(props: storyProps) {
   const exit = props.reset
 
   const [screen, setScreen] = createSignal("arcs")
-  const [arc, setArc] = createSignal<Arc>()
+  const [arc, setArc] = createSignal<ArcType>()
 
   const sidebarItems = [
     { name: "Arcs", screenId: "arcs" },
     { name: "Collections", screenId: "collections" },
   ]
 
-  const arcs: Arc[] = Arcs
+  const arcs: ArcType[] = Arcs
 
   const toTitleCase = (str: string) => {
     return str.replace(/\w\S*/g, function (txt: string) {
@@ -54,7 +55,7 @@ export default function Story(props: storyProps) {
               <h1>{toTitleCase(arc().name)}</h1>
               <button onclick={() => setArc(undefined)}>Close</button>
             </div>
-            <div>{arc().name}</div>
+            <Arc arc={arc()} openArc={(arc: ArcType) => setArc(arc)} />
           </>
         ) : (
           <>
@@ -66,7 +67,10 @@ export default function Story(props: storyProps) {
               {screen() == "arcs" ? (
                 <>
                   {arcs.map((arc) => (
-                    <ArcCard arc={arc} openArc={(arc: Arc) => setArc(arc)} />
+                    <ArcCard
+                      arc={arc}
+                      openArc={(arc: ArcType) => setArc(arc)}
+                    />
                   ))}
                 </>
               ) : screen() == "collections" ? (

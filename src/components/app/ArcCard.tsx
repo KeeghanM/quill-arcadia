@@ -1,7 +1,7 @@
-import type { Arc } from "./types"
+import type { ArcType } from "./types"
 type arcCardProps = {
-  arc: Arc
-  openArc: (arc: Arc) => void
+  arc: ArcType
+  openArc: (arc: ArcType) => void
 }
 
 export default function ArcCard(props: arcCardProps) {
@@ -38,7 +38,7 @@ export default function ArcCard(props: arcCardProps) {
       <p class="arcHook">{truncate(arc.information["hook"], 80, true)}</p>
       <p class="subArcTitle">Arcs</p>
       <ul class="subArcs">
-        {arc.SubArcs?.map((subArc: Arc) => {
+        {arc.SubArcs?.map((subArc: ArcType) => {
           return <li onclick={() => openArc(subArc)}>{subArc.name}</li>
         })}
       </ul>
