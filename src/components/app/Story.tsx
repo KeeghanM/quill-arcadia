@@ -1,6 +1,6 @@
 import type { ArcType } from "./types"
 
-import { createSignal, createEffect } from "solid-js"
+import { createSignal, createContext, useContext } from "solid-js"
 import { Arcs } from "./dummyValues"
 import "./Story.css"
 import ArcCard from "./ArcCard"
@@ -10,6 +10,8 @@ type storyProps = {
   id: string
   reset: () => void
 }
+
+export const ArcContext = createContext<ArcType | undefined>(undefined)
 
 export default function Story(props: storyProps) {
   const userId = props.id
@@ -51,11 +53,13 @@ export default function Story(props: storyProps) {
       <main>
         {screen() == "arcs" && arc() ? (
           <>
-            <div class="screenTitle">
-              <h1>{toTitleCase(arc().name)}</h1>
-              <button onclick={() => setArc(undefined)}>Close</button>
-            </div>
-            <Arc arc={arc()} openArc={(arc: ArcType) => setArc(arc)} />
+            <ArcContext.Provider value={[arc, setArc]}>
+              <div class="screenTitle">
+                <h1>{toTitleCase(arc().name)}</h1>
+                <button onclick={() => setArc(undefined)}>Close</button>
+              </div>
+              <Arc openArc={(arc: ArcType) => setArc(arc)} />
+            </ArcContext.Provider>
           </>
         ) : (
           <>
