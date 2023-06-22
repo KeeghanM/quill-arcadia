@@ -1,4 +1,5 @@
-import type { ArcType } from "./types"
+import type { ArcType } from "../types"
+import { truncate } from "../lib/helpers"
 type arcCardProps = {
   arc: ArcType
   openArc: (arc: ArcType) => void
@@ -8,17 +9,6 @@ export default function ArcCard(props: arcCardProps) {
   const arc = props.arc
   const openArc = props.openArc
 
-  const truncate = (str: string, n: number, useWordBoundary: boolean) => {
-    if (str.length <= n) {
-      return str
-    }
-    const subString = str.slice(0, n - 1)
-    return (
-      (useWordBoundary
-        ? subString.slice(0, subString.lastIndexOf(" "))
-        : subString) + "..."
-    )
-  }
   return (
     <div class="card">
       <p class="cardName" onclick={() => openArc(arc)}>

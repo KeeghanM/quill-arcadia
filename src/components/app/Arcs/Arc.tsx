@@ -1,11 +1,11 @@
 import { useContext, createSignal, createEffect } from "solid-js"
-import { ArcContext } from "./Story"
+import { ArcContext } from "../Story"
 
-import type { ArcType, CollectionType, ThingType } from "./types"
-import { get } from "../../pages/api/collections"
+import type { ArcType, CollectionType, ThingType } from "../types"
 type ArcProps = {
   openArc: (arc: ArcType) => void
 }
+
 export default function Arc(props: ArcProps) {
   // @ts-ignore
   const [arc] = useContext(ArcContext)
