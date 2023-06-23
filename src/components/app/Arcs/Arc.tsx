@@ -1,4 +1,4 @@
-import { useContext, createSignal } from "solid-js"
+import { useContext, createSignal, createEffect } from "solid-js"
 import { ArcContext } from "../Story"
 
 import type { ArcType, CollectionType, ThingType } from "../types"
@@ -44,6 +44,10 @@ export default function Arc(props: ArcProps) {
       setThings(getCollection().things)
     }
   }
+
+  createEffect(() => {
+    setThings(getCollection() ? getCollection().things : [])
+  })
 
   return (
     <div class="arc">
