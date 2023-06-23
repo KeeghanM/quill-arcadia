@@ -122,3 +122,9 @@ li .key {
   font-weight: bold;
   cursor: pointer;
 }
+ul.collectionsList {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--clr-secondary);
+  border-radius: 0.5rem;
+}

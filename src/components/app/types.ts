@@ -5,7 +5,8 @@ export type ThingType = {
 
 export type CollectionType = {
   name: string
-  things: [ThingType | CollectionType] | []
+  things: ThingType[]
+  subCollections?: CollectionType[]
 }
 
 export type ArcType = {

@@ -1,10 +1,14 @@
-import type { ArcType, CollectionType } from "./types"
+import type { ArcType, CollectionType, ThingType } from "./types"
 
 import { createSignal, createContext, Show, For } from "solid-js"
-import "./Story.css"
 import Arc from "./Arcs/Arc"
 import ArcsList from "./Arcs/ArcsList"
+import Collection from "./Collections/Collection"
+import CollectionsList from "./Collections/CollectionsList"
+
 import { toTitleCase } from "./lib/helpers"
+
+import "./Story.css"
 
 type storyProps = {
   id: string
@@ -21,11 +25,13 @@ export default function Story(props: storyProps) {
   const [screen, setScreen] = createSignal("arcs")
   const [arc, setArc] = createSignal<ArcType>()
   const [collection, setCollection] = createSignal<CollectionType>()
+  const [thing, setThing] = createSignal<ThingType>()
 
   const changeScreen = (screen: string) => {
     setScreen(screen)
     setArc(undefined)
     setCollection(undefined)
+    setThing(undefined)
   }
 
   const sidebarItems = [
@@ -68,7 +74,29 @@ export default function Story(props: storyProps) {
           </Show>
         </Show>
         <Show when={screen() == "collections"}>
-          <p>Collections</p>
+          <Show
+            when={collection()}
+            fallback={
+              <CollectionsList
+                openCollection={(collection: CollectionType) =>
+                  setCollection(collection)
+                }
+              />
+            }
+          >
+            <CollectionContext.Provider value={[collection, setCollection]}>
+              <div class="screenTitle">
+                <h1>{toTitleCase(collection().name)}</h1>
+                <button onclick={() => setCollection(undefined)}>Close</button>
+              </div>
+              <Collection
+                openThing={(thing: ThingType) => setThing(thing)}
+                openCollection={(collection: CollectionType) =>
+                  setCollection(collection)
+                }
+              />
+            </CollectionContext.Provider>
+          </Show>
         </Show>
       </main>
     </>

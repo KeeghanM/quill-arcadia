@@ -1,4 +1,4 @@
-import type { ArcType } from "../types"
+import type { ArcType, CollectionType } from "../types"
 
 export const Arcs: ArcType[] = [
   {
@@ -209,6 +209,22 @@ export const Arcs: ArcType[] = [
             "The curse weakens the party and the lich is a formidable foe.",
           antagonist:
             "The lich that was once the ruler of the city and now its eternal guardian.",
+        },
+      },
+    ],
+  },
+]
+
+export const Collections: CollectionType[] = [
+  {
+    name: "People",
+    things: [
+      {
+        name: "Bob",
+        information: {
+          race: "Human",
+          age: "32",
+          job: "Blacksmith",
         },
       },
     ],

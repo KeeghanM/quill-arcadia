@@ -1,7 +1,8 @@
-import { useContext, createSignal, createEffect } from "solid-js"
+import { useContext, createSignal } from "solid-js"
 import { ArcContext } from "../Story"
 
 import type { ArcType, CollectionType, ThingType } from "../types"
+
 type ArcProps = {
   openArc: (arc: ArcType) => void
 }
@@ -44,12 +45,8 @@ export default function Arc(props: ArcProps) {
     }
   }
 
-  createEffect(() => {
-    setThings(getCollection() ? getCollection().things : [])
-  })
-
   return (
-    <div class="arc ">
+    <div class="arc">
       <div class="section">
         <h3>SubArcs</h3>
         <ul class="bullets maxHeight">
