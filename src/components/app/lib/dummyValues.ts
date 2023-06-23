@@ -1,4 +1,4 @@
-import type { ArcType, CollectionType } from "../types"
+import type { ArcType, CollectionType } from "./types"
 
 export const Arcs: ArcType[] = [
   {

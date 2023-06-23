@@ -1,7 +1,7 @@
 import { useContext, createSignal, For } from "solid-js"
 import { CollectionContext } from "../Story"
 
-import type { CollectionType, ThingType } from "../types"
+import type { CollectionType, ThingType } from "../lib/types"
 
 type CollectionProps = {
   openThing: (thing: ThingType) => void

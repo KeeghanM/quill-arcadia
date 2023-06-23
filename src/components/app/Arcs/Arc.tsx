@@ -1,7 +1,7 @@
 import { useContext, createSignal, createEffect, For } from "solid-js"
 import { ArcContext } from "../Story"
 
-import type { ArcType, CollectionType, ThingType } from "../types"
+import type { ArcType, CollectionType, ThingType } from "../lib/types"
 
 type ArcProps = {
   openArc: (arc: ArcType) => void

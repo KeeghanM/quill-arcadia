@@ -1,15 +1,12 @@
 import { For, createSignal } from "solid-js"
-import { Collections } from "../lib/dummyValues"
-import type { CollectionType } from "../types"
+import { collections, setCollections } from "../lib/store"
+import type { CollectionType } from "../lib/types"
 
 type CollectionListType = {
   openCollection: (collection: CollectionType) => void
 }
 
 export default function CollectionsList(props: CollectionListType) {
-  const [collections, setCollections] =
-    createSignal<CollectionType[]>(Collections)
-
   const addCollection = () => {
     const name = prompt("Collection name?")
     if (name) {

@@ -1,15 +1,13 @@
-import type { ArcType, CollectionType, ThingType } from "./types"
+import type { ArcType, CollectionType, ThingType } from "./lib/types"
 
 import { createSignal, createContext, Show, For } from "solid-js"
 import Arc from "./Arcs/Arc"
 import ArcsList from "./Arcs/ArcsList"
 import Collection from "./Collections/Collection"
 import CollectionsList from "./Collections/CollectionsList"
+import Thing from "./Things/Thing"
 
 import { toTitleCase } from "./lib/helpers"
-
-import "./Story.css"
-import Thing from "./Things/Thing"
 
 type storyProps = {
   id: string

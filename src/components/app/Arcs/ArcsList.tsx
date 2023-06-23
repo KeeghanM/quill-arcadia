@@ -1,7 +1,7 @@
 import { createSignal, For } from "solid-js"
 
-import { Arcs } from "../lib/dummyValues"
-import type { ArcType } from "../types"
+import { arcs, setArcs } from "../lib/store"
+import type { ArcType } from "../lib/types"
 import ArcCard from "./ArcListCard"
 
 type ArcListType = {
@@ -9,8 +9,6 @@ type ArcListType = {
 }
 
 export default function ArcsList(props: ArcListType) {
-  const [arcs, setArcs] = createSignal<ArcType[]>(Arcs)
-
   const addArc = () => {
     const name = prompt("Arc name?")
     if (name) {

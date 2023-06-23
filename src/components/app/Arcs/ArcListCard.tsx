@@ -1,6 +1,6 @@
 import { For } from "solid-js"
 
-import type { ArcType } from "../types"
+import type { ArcType } from "../lib/types"
 import { truncate } from "../lib/helpers"
 type arcCardProps = {
   arc: ArcType

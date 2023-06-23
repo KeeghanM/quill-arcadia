@@ -15,3 +15,9 @@ export type ArcType = {
   subArcs?: ArcType[]
   collections: string[]
 }
+
+export type StoryType = {
+  id: string
+  name: string
+  lastEdited: string
+}
