@@ -91,9 +91,10 @@ export default function Story(props: storyProps) {
               </div>
               <Collection
                 openThing={(thing: ThingType) => setThing(thing)}
-                openCollection={(collection: CollectionType) =>
-                  setCollection(collection)
-                }
+                openCollection={(sub: CollectionType) => {
+                  setCollection(undefined) // Dunno why I have to do this, but it works
+                  setCollection(sub)
+                }}
               />
             </CollectionContext.Provider>
           </Show>

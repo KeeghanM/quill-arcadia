@@ -228,5 +228,16 @@ export const Collections: CollectionType[] = [
         },
       },
     ],
+    subCollections: [
+      {
+        name: "Villagers",
+        things: [
+          {
+            name: "Jonny",
+            information: {},
+          },
+        ],
+      },
+    ],
   },
 ]
