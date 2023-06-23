@@ -1,6 +1,6 @@
 export type ThingType = {
   name: string
-  information: { [key: string]: string }
+  information: Record<string, string>
 }
 
 export type CollectionType = {
@@ -11,7 +11,7 @@ export type CollectionType = {
 
 export type ArcType = {
   name: string
-  information: { [key: string]: string }
-  SubArcs?: ArcType[]
+  information: Record<string, string>
+  subArcs?: ArcType[]
   collections: string[]
 }

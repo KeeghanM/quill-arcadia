@@ -1,3 +1,5 @@
+import { For } from "solid-js"
+
 import type { ArcType } from "../types"
 import { truncate } from "../lib/helpers"
 type arcCardProps = {
@@ -28,13 +30,13 @@ export default function ArcCard(props: arcCardProps) {
       <p class="arcHook">{truncate(arc.information["hook"], 80, true)}</p>
       <p class="subArcTitle">Arcs</p>
       <ul class="subArcs">
-        {arc.SubArcs?.map((subArc: ArcType) => {
-          return (
+        <For each={arc.subArcs}>
+          {(subArc) => (
             <li class="clickable" onclick={() => openArc(subArc)}>
               {subArc.name}
             </li>
-          )
-        })}
+          )}
+        </For>
       </ul>
     </div>
   )

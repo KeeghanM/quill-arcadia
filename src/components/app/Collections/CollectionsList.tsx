@@ -1,4 +1,4 @@
-import { For } from "solid-js"
+import { For, createSignal } from "solid-js"
 import { Collections } from "../lib/dummyValues"
 import type { CollectionType } from "../types"
 
@@ -7,15 +7,29 @@ type CollectionListType = {
 }
 
 export default function CollectionsList(props: CollectionListType) {
-  const collections: CollectionType[] = Collections
+  const [collections, setCollections] =
+    createSignal<CollectionType[]>(Collections)
+
+  const addCollection = () => {
+    const name = prompt("Collection name?")
+    if (name) {
+      const newCollection: CollectionType = {
+        name,
+        things: [],
+        subCollections: [],
+      }
+      setCollections([...collections(), newCollection])
+    }
+  }
+
   return (
     <>
       <div class="screenTitle">
         <h1>Collections</h1>
-        <button>Add New</button>
+        <button onclick={addCollection}>Add New</button>
       </div>
       <ul class="collectionsList bullets">
-        <For each={collections}>
+        <For each={collections()}>
           {(collection: CollectionType) => (
             <li
               class="clickable"

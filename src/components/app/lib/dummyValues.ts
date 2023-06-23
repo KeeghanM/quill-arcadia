@@ -12,7 +12,7 @@ export const Arcs: ArcType[] = [
       antagonist:
         "A corrupt councilor of the town is secretly manipulating events to increase his own wealth and power, even if it harms the townsfolk.",
     },
-    SubArcs: [
+    subArcs: [
       {
         name: "The Lost Sword",
         collections: [],
@@ -86,7 +86,7 @@ export const Arcs: ArcType[] = [
       antagonist:
         "A powerful crime syndicate that has been operating in the shadows of the city is behind the incidents.",
     },
-    SubArcs: [
+    subArcs: [
       {
         name: "The Invisible Thief",
         collections: [],
@@ -136,7 +136,7 @@ export const Arcs: ArcType[] = [
       antagonist:
         "The spirit of the mountain, an ancient elemental, does not take kindly to trespassers.",
     },
-    SubArcs: [
+    subArcs: [
       {
         name: "The Mountain's Fury",
         collections: [],
@@ -162,7 +162,7 @@ export const Arcs: ArcType[] = [
       antagonist:
         "A powerful lich, who was once a ruler of this ancient city, haunts the ruins.",
     },
-    SubArcs: [
+    subArcs: [
       {
         name: "The Guardians' Test",
         collections: [],

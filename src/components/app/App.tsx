@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js"
+import { createSignal, For } from "solid-js"
 import "./App.css"
 import Story from "./Story"
 
@@ -24,13 +24,17 @@ export default function App(props: AppProps) {
       ) : (
         <div class="stories">
           <h1>Your stories...</h1>
-          {stories.map((story) => (
-            <div class="story-card">
-              <div class="name">{story.name}</div>
-              <div class="edit-date">Last edited: {story.lastEdit}</div>
-              <button onclick={() => setStory(story.id)}>Open Sesame..</button>
-            </div>
-          ))}
+          <For each={stories}>
+            {(story) => (
+              <div class="story-card">
+                <div class="name">{story.name}</div>
+                <div class="edit-date">Last edited: {story.lastEdit}</div>
+                <button onclick={() => setStory(story.id)}>
+                  Open Sesame..
+                </button>
+              </div>
+            )}
+          </For>
         </div>
       )}
     </>

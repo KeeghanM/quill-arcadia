@@ -1,10 +1,11 @@
-import { useContext, createSignal, createEffect } from "solid-js"
+import { useContext, createSignal, createEffect, For } from "solid-js"
 import { ArcContext } from "../Story"
 
 import type { ArcType, CollectionType, ThingType } from "../types"
 
 type ArcProps = {
   openArc: (arc: ArcType) => void
+  openThing: (thing: ThingType) => void
 }
 
 export default function Arc(props: ArcProps) {
@@ -17,7 +18,6 @@ export default function Arc(props: ArcProps) {
     CollectionType | undefined
   >()
   const [getThings, setThings] = createSignal<ThingType[]>([])
-  const [getThing, setThing] = createSignal<ThingType | undefined>()
 
   const addCollection = () => {
     const name = prompt("Collection name?")
@@ -54,22 +54,26 @@ export default function Arc(props: ArcProps) {
       <div class="section">
         <h3>SubArcs</h3>
         <ul class="bullets maxHeight">
-          {arc().SubArcs?.map((sub: ArcType) => (
-            <li class="clickable" onclick={() => props.openArc(sub)}>
-              {sub.name}
-            </li>
-          ))}
+          <For each={arc().subArcs}>
+            {(sub: ArcType) => (
+              <li class="clickable" onclick={() => props.openArc(sub)}>
+                {sub.name}
+              </li>
+            )}
+          </For>
         </ul>
       </div>
       <div class="section">
         <h3>Information</h3>
         <ul>
-          {Object.entries(arc().information).map(([key, value]) => (
-            <li>
-              <span class="key">{key}:</span>
-              <span class="value">{String(value)}</span>
-            </li>
-          ))}
+          <For each={Object.entries(arc().information)}>
+            {([key, value]: [string, unknown]) => (
+              <li>
+                <span class="key">{key}:</span>
+                <span class="value">{String(value)}</span>
+              </li>
+            )}
+          </For>
         </ul>
       </div>
       <div class="section">
@@ -78,11 +82,13 @@ export default function Arc(props: ArcProps) {
           <span onclick={addCollection}>+</span>
         </div>
         <ul class="bullets">
-          {getCollections().map((collection: CollectionType) => (
-            <li class="clickable" onclick={() => setCollection(collection)}>
-              {collection.name}
-            </li>
-          ))}
+          <For each={getCollections()}>
+            {(collection: CollectionType) => (
+              <li class="clickable" onclick={() => setCollection(collection)}>
+                {collection.name}
+              </li>
+            )}
+          </For>
         </ul>
       </div>
       {getCollection() && (
@@ -92,11 +98,13 @@ export default function Arc(props: ArcProps) {
             <span onclick={addThing}>+</span>
           </div>
           <ul class="bullets">
-            {getThings().map((thing: ThingType) => (
-              <li class="clickable" onclick={() => setThing(thing)}>
-                {thing.name}
-              </li>
-            ))}
+            <For each={getThings()}>
+              {(thing: ThingType) => (
+                <li class="clickable" onclick={() => props.openThing(thing)}>
+                  {thing.name}
+                </li>
+              )}
+            </For>
           </ul>
         </div>
       )}

@@ -9,6 +9,7 @@ import CollectionsList from "./Collections/CollectionsList"
 import { toTitleCase } from "./lib/helpers"
 
 import "./Story.css"
+import Thing from "./Things/Thing"
 
 type storyProps = {
   id: string
@@ -17,6 +18,7 @@ type storyProps = {
 
 export const ArcContext = createContext<ArcType>(undefined)
 export const CollectionContext = createContext<CollectionType>(undefined)
+export const ThingContext = createContext<ThingType>(undefined)
 
 export default function Story(props: storyProps) {
   const userId = props.id
@@ -69,7 +71,10 @@ export default function Story(props: storyProps) {
                 <h1>{toTitleCase(arc().name)}</h1>
                 <button onclick={() => setArc(undefined)}>Close</button>
               </div>
-              <Arc openArc={(arc: ArcType) => setArc(arc)} />
+              <Arc
+                openArc={(arc: ArcType) => setArc(arc)}
+                openThing={(thing: ThingType) => setThing(thing)}
+              />
             </ArcContext.Provider>
           </Show>
         </Show>
@@ -98,6 +103,15 @@ export default function Story(props: storyProps) {
               />
             </CollectionContext.Provider>
           </Show>
+        </Show>
+        <Show when={thing()}>
+          <ThingContext.Provider value={[thing, setThing]}>
+            <div class="screenTitle">
+              <h1>{toTitleCase(thing().name)}</h1>
+              <button onclick={() => setThing(undefined)}>Close</button>
+            </div>
+            <Thing />
+          </ThingContext.Provider>
         </Show>
       </main>
     </>

@@ -44,7 +44,6 @@ export default function Collection(props: CollectionProps) {
         newCollection,
       ]
       setSubCollections(collection().subCollections)
-      console.log(collection().subCollections)
     }
   }
 
