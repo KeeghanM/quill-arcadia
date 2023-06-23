@@ -2,6 +2,8 @@ import { useContext, createSignal, createEffect, For } from "solid-js"
 import { ArcContext } from "../Story"
 
 import type { ArcType, CollectionType, ThingType } from "../lib/types"
+import { arcs, setArcs } from "../lib/store"
+import { toTitleCase } from "../lib/helpers"
 
 type ArcProps = {
   openArc: (arc: ArcType) => void
@@ -10,14 +12,49 @@ type ArcProps = {
 
 export default function Arc(props: ArcProps) {
   // @ts-ignore
-  const [arc] = useContext(ArcContext)
+  const [arc, setArc] = useContext(ArcContext)
   const [getCollections, setCollections] = createSignal<CollectionType[]>(
     arc().collections
   )
+  const [getThings, setThings] = createSignal<ThingType[]>([])
+  const [getSubArcs, setSubArcs] = createSignal<ArcType[]>(arc().subArcs)
+  const [getInformation, setInformation] = createSignal(arc().information)
+
   const [getCollection, setCollection] = createSignal<
     CollectionType | undefined
   >()
-  const [getThings, setThings] = createSignal<ThingType[]>([])
+
+  const addSubArc = () => {
+    const name = prompt("SubArc name?")
+    if (name) {
+      const newSubArc: ArcType = {
+        id: Date.now().toString() + Math.round(Math.random() * 1000).toString(),
+        name,
+        subArcs: [],
+        information: {
+          hook: "",
+          goal: "",
+          challenge: "",
+          antagonist: "",
+        },
+        collections: [],
+      }
+      const updatedArc = { ...arc(), subArcs: [...arc().subArcs, newSubArc] }
+      setArc(updatedArc)
+    }
+  }
+
+  const addInformation = () => {
+    const key = prompt("Information Name?")
+    const value = prompt("Information Value?")
+    if (key && value) {
+      const updatedArc = {
+        ...arc(),
+        information: { ...arc().information, [key]: value },
+      }
+      setArc(updatedArc)
+    }
+  }
 
   const addCollection = () => {
     const name = prompt("Collection name?")
@@ -26,8 +63,12 @@ export default function Arc(props: ArcProps) {
         name,
         things: [],
       }
-      setCollections([...getCollections(), newCollection])
-      arc().collections = getCollections()
+      const updatedArc = {
+        ...arc(),
+        collections: [...arc().collections, newCollection],
+      }
+      setArc(updatedArc)
+      setCollections(updatedArc.collections)
     }
   }
 
@@ -38,76 +79,94 @@ export default function Arc(props: ArcProps) {
         name,
         information: {},
       }
-      // @ts-ignore
-      getCollection().things = [...getCollection().things, newThing]
-      setCollection(getCollection())
-      setThings(getCollection().things)
+      const updatedCollection = {
+        ...getCollection(),
+        things: [...getCollection().things, newThing],
+      }
+      setCollection(updatedCollection)
+      setThings(updatedCollection.things)
     }
   }
 
-  createEffect(() => {
-    setThings(getCollection() ? getCollection().things : [])
-  })
+  const closeArc = () => {
+    const updatedArcs = arcs().map((elem) =>
+      elem.id === arc().id ? arc() : elem
+    )
+    setArcs(updatedArcs)
+    setArc(undefined)
+  }
 
   return (
-    <div class="arc">
-      <div class="section">
-        <h3>SubArcs</h3>
-        <ul class="bullets maxHeight">
-          <For each={arc().subArcs}>
-            {(sub: ArcType) => (
-              <li class="clickable" onclick={() => props.openArc(sub)}>
-                {sub.name}
-              </li>
-            )}
-          </For>
-        </ul>
+    <>
+      <div class="screenTitle">
+        <h1>{toTitleCase(arc().name)}</h1>
+        <button onclick={closeArc}>Close</button>
       </div>
-      <div class="section">
-        <h3>Information</h3>
-        <ul>
-          <For each={Object.entries(arc().information)}>
-            {([key, value]: [string, unknown]) => (
-              <li>
-                <span class="key">{key}:</span>
-                <span class="value">{String(value)}</span>
-              </li>
-            )}
-          </For>
-        </ul>
-      </div>
-      <div class="section">
-        <div class="sectionTitle">
-          <h3>Collections</h3>
-          <span onclick={addCollection}>+</span>
-        </div>
-        <ul class="bullets">
-          <For each={getCollections()}>
-            {(collection: CollectionType) => (
-              <li class="clickable" onclick={() => setCollection(collection)}>
-                {collection.name}
-              </li>
-            )}
-          </For>
-        </ul>
-      </div>
-      {getCollection() && (
+      <div class="arc">
         <div class="section">
           <div class="sectionTitle">
-            <h3>{getCollection()?.name}</h3>
-            <span onclick={addThing}>+</span>
+            <h3>SubArcs</h3>
+            <span onclick={addSubArc}>+</span>
           </div>
-          <ul class="bullets">
-            <For each={getThings()}>
-              {(thing: ThingType) => (
-                <li class="clickable" onclick={() => props.openThing(thing)}>
-                  {thing.name}
+          <ul class="bullets maxHeight">
+            <For each={arc().subArcs}>
+              {(sub: ArcType) => (
+                <li class="clickable" onclick={() => props.openArc(sub)}>
+                  {sub.name}
                 </li>
               )}
             </For>
           </ul>
         </div>
-      )}
-    </div>
+        <div class="section">
+          <div class="sectionTitle">
+            <h3>Information</h3>
+            <span onclick={addInformation}>+</span>
+          </div>
+          <ul>
+            <For each={Object.entries(arc().information)}>
+              {([key, value]: [string, unknown]) => (
+                <li>
+                  <span class="key">{key}:</span>
+                  <span class="value">{String(value)}</span>
+                </li>
+              )}
+            </For>
+          </ul>
+        </div>
+        <div class="section">
+          <div class="sectionTitle">
+            <h3>Collections</h3>
+            <span onclick={addCollection}>+</span>
+          </div>
+          <ul class="bullets">
+            <For each={getCollections()}>
+              {(collection: CollectionType) => (
+                <li class="clickable" onclick={() => setCollection(collection)}>
+                  {collection.name}
+                </li>
+              )}
+            </For>
+          </ul>
+        </div>
+        {getCollection() && (
+          <div class="section">
+            <div class="sectionTitle">
+              <h3>{getCollection()?.name}</h3>
+              <span onclick={addThing}>+</span>
+            </div>
+            <ul class="bullets">
+              <For each={getThings()}>
+                {(thing: ThingType) => (
+                  <li class="clickable" onclick={() => props.openThing(thing)}>
+                    {thing.name}
+                  </li>
+                )}
+              </For>
+            </ul>
+          </div>
+        )}
+      </div>
+    </>
   )
 }

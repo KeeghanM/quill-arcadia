@@ -10,6 +10,7 @@ export type CollectionType = {
 }
 
 export type ArcType = {
+  id: string
   name: string
   information: Record<string, string>
   subArcs?: ArcType[]

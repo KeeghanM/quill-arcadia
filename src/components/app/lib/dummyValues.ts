@@ -2,6 +2,7 @@ import type { ArcType, CollectionType } from "./types"
 
 export const Arcs: ArcType[] = [
   {
+    id: "1",
     name: "Silverhollow",
     collections: [],
     information: {
@@ -14,6 +15,7 @@ export const Arcs: ArcType[] = [
     },
     subArcs: [
       {
+        id: "2",
         name: "The Lost Sword",
         collections: [],
         information: {
@@ -26,6 +28,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "3",
         name: "The Dragon's Egg",
         collections: [],
         information: {
@@ -38,6 +41,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "4",
         name: "The Haunted Forest",
         collections: [],
         information: {
@@ -50,6 +54,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "5",
         name: "The Cursed Amulet",
         collections: [],
         information: {
@@ -62,6 +67,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "6",
         name: "The Unseen Threat",
         collections: [],
         information: {
@@ -76,6 +82,7 @@ export const Arcs: ArcType[] = [
     ],
   },
   {
+    id: "7",
     name: "Brimshale",
     collections: [],
     information: {
@@ -88,6 +95,7 @@ export const Arcs: ArcType[] = [
     },
     subArcs: [
       {
+        id: "8",
         name: "The Invisible Thief",
         collections: [],
         information: {
@@ -100,6 +108,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "9",
         name: "The Rats' Rebellion",
         collections: [],
         information: {
@@ -112,6 +121,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "10",
         name: "The Shadowy Specter",
         collections: [],
         information: {
@@ -126,6 +136,7 @@ export const Arcs: ArcType[] = [
     ],
   },
   {
+    id: "11",
     name: "Willows Peak",
     collections: [],
     information: {
@@ -138,6 +149,7 @@ export const Arcs: ArcType[] = [
     },
     subArcs: [
       {
+        id: "12",
         name: "The Mountain's Fury",
         collections: [],
         information: {
@@ -152,6 +164,7 @@ export const Arcs: ArcType[] = [
     ],
   },
   {
+    id: "13",
     name: "Ancient Ruins",
     collections: [],
     information: {
@@ -164,6 +177,7 @@ export const Arcs: ArcType[] = [
     },
     subArcs: [
       {
+        id: "14",
         name: "The Guardians' Test",
         collections: [],
         information: {
@@ -176,6 +190,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "15",
         name: "The Labyrinth of Shadows",
         collections: [],
         information: {
@@ -188,6 +203,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "16",
         name: "The Hall of Riddles",
         collections: [],
         information: {
@@ -200,6 +216,7 @@ export const Arcs: ArcType[] = [
         },
       },
       {
+        id: "17",
         name: "The Lich's Curse",
         collections: [],
         information: {

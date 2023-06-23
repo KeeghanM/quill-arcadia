@@ -65,10 +65,6 @@ export default function Story(props: storyProps) {
             fallback={<ArcsList openArc={(arc: ArcType) => setArc(arc)} />}
           >
             <ArcContext.Provider value={[arc, setArc]}>
-              <div class="screenTitle">
-                <h1>{toTitleCase(arc().name)}</h1>
-                <button onclick={() => setArc(undefined)}>Close</button>
-              </div>
               <Arc
                 openArc={(arc: ArcType) => setArc(arc)}
                 openThing={(thing: ThingType) => setThing(thing)}
