@@ -1,7 +1,9 @@
+import type { CollectionType, ThingType } from "../lib/types"
+
 import { useContext, createSignal, For } from "solid-js"
 import { CollectionContext } from "../Story"
-
-import type { CollectionType, ThingType } from "../lib/types"
+import { toTitleCase } from "../lib/helpers"
+import { collections, setCollections } from "../lib/store"
 
 type CollectionProps = {
   openThing: (thing: ThingType) => void
@@ -10,7 +12,7 @@ type CollectionProps = {
 
 export default function Collection(props: CollectionProps) {
   // @ts-ignore
-  const [collection] = useContext(CollectionContext)
+  const [collection, setCollection] = useContext(CollectionContext)
   const [getThings, setThings] = createSignal<ThingType[]>(collection().things)
   const [getSubCollections, setSubCollections] = createSignal<CollectionType[]>(
     collection().subCollections
@@ -47,18 +49,30 @@ export default function Collection(props: CollectionProps) {
     }
   }
 
+  const closeCollection = () => {
+    const updatedCollections = collections().map((elem: CollectionType) =>
+      elem.id === collections().id ? collections() : elem
+    )
+    setCollections(updatedCollections)
+    setCollection(undefined)
+  }
+
   return (
-    <div class="cardContainer">
-      <div class="card">
+    <>
+      <div class="screenTitle">
+        <h1>{toTitleCase(collection().name)}</h1>
+        <button onclick={closeCollection}>Close</button>
+      </div>
+      <div class="header">
         <div class="sectionTitle">
           <h3>Things</h3>
           <span onclick={addThing}>+</span>
         </div>
-        <ul class="bullets">
+        <ul>
           <For each={getThings()}>
             {(thing: ThingType) => (
               <li
-                class="clickable"
+                class="information clickable"
                 onclick={() => {
                   props.openThing(thing)
                 }}
@@ -69,26 +83,28 @@ export default function Collection(props: CollectionProps) {
           </For>
         </ul>
       </div>
-      <div class="card">
-        <div class="sectionTitle">
-          <h3>SubCollections</h3>
-          <span onclick={addCollection}>+</span>
+      <div class="cardContainer">
+        <div class="card">
+          <div class="sectionTitle">
+            <h3>SubCollections</h3>
+            <span onclick={addCollection}>+</span>
+          </div>
+          <ul class="bullets">
+            <For each={getSubCollections()}>
+              {(sub: CollectionType) => (
+                <li
+                  class="clickable"
+                  onclick={() => {
+                    props.openCollection(sub)
+                  }}
+                >
+                  {sub.name}
+                </li>
+              )}
+            </For>
+          </ul>
         </div>
-        <ul class="bullets">
-          <For each={getSubCollections()}>
-            {(sub: CollectionType) => (
-              <li
-                class="clickable"
-                onclick={() => {
-                  props.openCollection(sub)
-                }}
-              >
-                {sub.name}
-              </li>
-            )}
-          </For>
-        </ul>
       </div>
-    </div>
+    </>
   )
 }

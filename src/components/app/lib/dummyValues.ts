@@ -234,6 +234,7 @@ export const Arcs: ArcType[] = [
 
 export const Collections: CollectionType[] = [
   {
+    id: "1",
     name: "People",
     things: [
       {
@@ -247,6 +248,7 @@ export const Collections: CollectionType[] = [
     ],
     subCollections: [
       {
+        id: "2",
         name: "Villagers",
         things: [
           {

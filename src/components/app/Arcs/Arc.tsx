@@ -1,9 +1,10 @@
-import { useContext, createSignal, createEffect, For } from "solid-js"
+import { useContext, createSignal, For } from "solid-js"
 import { ArcContext } from "../Story"
 
 import type { ArcType, CollectionType, ThingType } from "../lib/types"
 import { arcs, setArcs } from "../lib/store"
 import { toTitleCase } from "../lib/helpers"
+import InformationItem from "../Information/information"
 
 type ArcProps = {
   openArc: (arc: ArcType) => void
@@ -61,6 +62,7 @@ export default function Arc(props: ArcProps) {
     const name = prompt("Collection name?")
     if (name) {
       const newCollection: CollectionType = {
+        id: Date.now().toString() + Math.round(Math.random() * 1000).toString(),
         name,
         things: [],
       }
@@ -103,6 +105,19 @@ export default function Arc(props: ArcProps) {
         <h1>{toTitleCase(arc().name)}</h1>
         <button onclick={closeArc}>Close</button>
       </div>
+      <div class="header">
+        <div class="sectionTitle">
+          <h3>Information</h3>
+          <span onclick={addInformation}>+</span>
+        </div>
+        <ul>
+          <For each={Object.entries(arc().information)}>
+            {([key, value]: [string, unknown]) => (
+              <InformationItem information={{ key, value: String(value) }} />
+            )}
+          </For>
+        </ul>
+      </div>
       <div class="cardContainer">
         <div class="card">
           <div class="sectionTitle">
@@ -114,22 +129,6 @@ export default function Arc(props: ArcProps) {
               {(sub: ArcType) => (
                 <li class="clickable" onclick={() => props.openArc(sub)}>
                   {sub.name}
-                </li>
-              )}
-            </For>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="sectionTitle">
-            <h3>Information</h3>
-            <span onclick={addInformation}>+</span>
-          </div>
-          <ul>
-            <For each={Object.entries(arc().information)}>
-              {([key, value]: [string, unknown]) => (
-                <li>
-                  <span class="key">{key}:</span>
-                  <span class="value">{String(value)}</span>
                 </li>
               )}
             </For>

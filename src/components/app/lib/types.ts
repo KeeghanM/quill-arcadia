@@ -4,6 +4,7 @@ export type ThingType = {
 }
 
 export type CollectionType = {
+  id: string
   name: string
   things: ThingType[]
   subCollections?: CollectionType[]

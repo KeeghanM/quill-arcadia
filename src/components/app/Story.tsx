@@ -84,10 +84,6 @@ export default function Story(props: storyProps) {
             }
           >
             <CollectionContext.Provider value={[collection, setCollection]}>
-              <div class="screenTitle">
-                <h1>{toTitleCase(collection().name)}</h1>
-                <button onclick={() => setCollection(undefined)}>Close</button>
-              </div>
               <Collection
                 openThing={(thing: ThingType) => setThing(thing)}
                 openCollection={(sub: CollectionType) => {
