@@ -1,4 +1,4 @@
-import { useContext, createSignal, For } from "solid-js"
+import { useContext, createSignal, For, onMount } from "solid-js"
 import { ArcContext } from "../Story"
 
 import type { ArcType, CollectionType, ThingType } from "../lib/types"
@@ -18,12 +18,18 @@ export default function Arc(props: ArcProps) {
     arc().collections
   )
   const [getThings, setThings] = createSignal<ThingType[]>([])
-  const [getSubArcs, setSubArcs] = createSignal<ArcType[]>(arc().subArcs)
-  const [getInformation, setInformation] = createSignal(arc().information)
 
   const [getCollection, setCollection] = createSignal<
     CollectionType | undefined
   >()
+
+  onMount(async () => {
+    const arcId = arc().id
+    const dbArc = await fetch(`/api/arcs/arc/${arcId}`).then((res) =>
+      res.json()
+    )
+    setArc(dbArc)
+  })
 
   const addSubArc = () => {
     const name = prompt("SubArc name?")
