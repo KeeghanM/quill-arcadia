@@ -207,13 +207,16 @@ li.information .key {
 }
 .thing {
   position: absolute;
-  width: 450px;
-  left: calc(50% - 225px);
+  width: 50%;
+  height: 50%;
   top: 50px;
   background: var(--clr-secondary);
   border-radius: 0.5rem;
   padding: 2rem;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .thingTitle {
