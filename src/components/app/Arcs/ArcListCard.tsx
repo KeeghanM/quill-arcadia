@@ -27,7 +27,11 @@ export default function ArcCard(props: arcCardProps) {
           />
         </svg>
       </p>
-      <p class="arcHook">{truncate(arc.information["hook"], 80, true)}</p>
+      <p class="arcHook">
+        {arc.information["hook"]
+          ? truncate(arc.information["hook"], 80, true)
+          : null}
+      </p>
       <p class="subArcTitle">Arcs</p>
       <ul class="subArcs">
         <For each={arc.subArcs}>

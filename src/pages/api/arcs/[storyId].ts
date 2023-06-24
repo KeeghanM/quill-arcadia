@@ -9,10 +9,12 @@ export const get: APIRoute = async ({ params, request }) => {
     const results = await DB.execute(
       `SELECT 
         a.id,
-        a.name
+        a.name,
+        ai.value as hook
       FROM 
         arcs a 
         join users u on u.id = a.user_id
+        left join arc_information ai on ai.arc_id = a.id and ai.name = 'hook'
     WHERE 
         u.user_id = ? 
         AND a.story_id = ?
@@ -24,6 +26,7 @@ export const get: APIRoute = async ({ params, request }) => {
       let newArc = {
         id: results.rows[i].id,
         name: results.rows[i].name,
+        information: { hook: results.rows[i].hook },
       }
       arcs.push(newArc)
     }

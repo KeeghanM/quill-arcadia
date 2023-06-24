@@ -50,7 +50,7 @@ export default function Story(props: storyProps) {
   ]
 
   return (
-    <StoryContext.Provider value={storyId}>
+    <StoryContext.Provider value={[storyId]}>
       <ul class="sidebar">
         <For each={sidebarItems}>
           {(item) => (
