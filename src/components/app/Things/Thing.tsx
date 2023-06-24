@@ -4,7 +4,7 @@ import { ThingContext } from "../Story"
 
 export default function Thing() {
   // @ts-ignore
-  const [thing] = useContext(ThingContext)
+  const [thing, setThing] = useContext(ThingContext)
 
   const addInformation = () => {
     const name = prompt("Information name?")
@@ -21,22 +21,28 @@ export default function Thing() {
   }
 
   return (
-    <div class="thing">
-      <div class="section">
-        <div class="sectionTitle">
-          <h3>Information</h3>
-          <span onclick={addInformation}>+</span>
+    <div class="thingContainer">
+      <div class="thing">
+        <div class="thingTitle">
+          <h1>{toTitleCase(thing().name)}</h1>
+          <button onclick={() => setThing(undefined)}>Close</button>
         </div>
-        <ul class="bullets">
-          <For each={Object.entries(thing().information)}>
-            {([name, content]: [string, unknown]) => (
-              <li>
-                <span class="name">{toTitleCase(name)}:</span>
-                <span class="content">{String(content)}</span>
-              </li>
-            )}
-          </For>
-        </ul>
+        <div class="section">
+          <div class="sectionTitle">
+            <h3>Information</h3>
+            <span onclick={addInformation}>+</span>
+          </div>
+          <ul class="bullets">
+            <For each={Object.entries(thing().information)}>
+              {([name, content]: [string, unknown]) => (
+                <li>
+                  <span class="name">{toTitleCase(name)}:</span>
+                  <span class="content">{String(content)}</span>
+                </li>
+              )}
+            </For>
+          </ul>
+        </div>
       </div>
     </div>
   )

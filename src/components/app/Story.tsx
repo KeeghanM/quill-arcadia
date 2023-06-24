@@ -96,10 +96,6 @@ export default function Story(props: storyProps) {
         </Show>
         <Show when={thing()}>
           <ThingContext.Provider value={[thing, setThing]}>
-            <div class="screenTitle">
-              <h1>{toTitleCase(thing().name)}</h1>
-              <button onclick={() => setThing(undefined)}>Close</button>
-            </div>
             <Thing />
           </ThingContext.Provider>
         </Show>
