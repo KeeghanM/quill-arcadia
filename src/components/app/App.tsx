@@ -2,6 +2,8 @@ import { createContext, createSignal, For, onMount, Show } from "solid-js"
 import "./App.css"
 import Story from "./Story"
 import type { StoryType } from "./lib/types"
+import Loading from "./lib/Loading"
+import { setStatus, status } from "./lib/store"
 
 type AppProps = {
   userId: string
@@ -16,6 +18,7 @@ export default function App(props: AppProps) {
   onMount(async () => {
     const stories = await fetch("/api/stories").then((res) => res.json())
     setStories(stories)
+    setStatus("loaded")
   })
 
   const addStory = async () => {
@@ -46,15 +49,20 @@ export default function App(props: AppProps) {
             <h1>Your stories...</h1>
             <button onclick={addStory}>New Story</button>
           </div>
-          <For each={stories()}>
-            {(story) => (
-              <div class="story-card">
-                <div class="name">{story.name}</div>
-                <div class="edit-date">Last edited: {story.lastEdited}</div>
-                <button onclick={() => setStory(story)}>Open Sesame..</button>
-              </div>
-            )}
-          </For>
+          <Show when={status() === "loading"}>
+            <Loading />
+          </Show>
+          <Show when={status() === "loaded"}>
+            <For each={stories()} fallback={<p>Add a story to get started!</p>}>
+              {(story) => (
+                <div class="story-card">
+                  <div class="name">{story.name}</div>
+                  <div class="edit-date">Last edited: {story.lastEdited}</div>
+                  <button onclick={() => setStory(story)}>Open Sesame..</button>
+                </div>
+              )}
+            </For>
+          </Show>
         </div>
       }
     >

@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro"
+import type { StoryType } from "../../components/app/lib/types"
 import { DB } from "./databaseConnection"
 import { getSession } from "auth-astro/server"
 
@@ -9,7 +10,16 @@ export const get: APIRoute = async ({ params, request }) => {
       "SELECT * FROM stories s join users u on u.id = s.user_ID WHERE u.user_id = ?",
       [session.session.user.id]
     )
-    return new Response(JSON.stringify(results.rows), {
+    let stories: StoryType[] = []
+    for (let i = 0; i < results.rows.length; i++) {
+      stories.push({
+        id: results.rows[i].id,
+        name: results.rows[i].name,
+        lastEdited: results.rows[i].last_edited,
+      })
+    }
+
+    return new Response(JSON.stringify(stories), {
       status: 200,
     })
   }
