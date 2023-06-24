@@ -48,8 +48,8 @@ export default function Collection(props: CollectionProps) {
   }
 
   return (
-    <div class="collection">
-      <div class="section">
+    <div class="cardContainer">
+      <div class="card">
         <div class="sectionTitle">
           <h3>Things</h3>
           <span onclick={addThing}>+</span>
@@ -69,7 +69,7 @@ export default function Collection(props: CollectionProps) {
           </For>
         </ul>
       </div>
-      <div class="section">
+      <div class="card">
         <div class="sectionTitle">
           <h3>SubCollections</h3>
           <span onclick={addCollection}>+</span>

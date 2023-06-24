@@ -39,6 +39,7 @@ export default function Arc(props: ArcProps) {
         },
         collections: [],
       }
+      if (!arc().subArcs) arc().subArcs = []
       const updatedArc = { ...arc(), subArcs: [...arc().subArcs, newSubArc] }
       setArc(updatedArc)
     }
@@ -102,13 +103,13 @@ export default function Arc(props: ArcProps) {
         <h1>{toTitleCase(arc().name)}</h1>
         <button onclick={closeArc}>Close</button>
       </div>
-      <div class="arc">
-        <div class="section">
+      <div class="cardContainer">
+        <div class="card">
           <div class="sectionTitle">
             <h3>SubArcs</h3>
             <span onclick={addSubArc}>+</span>
           </div>
-          <ul class="bullets maxHeight">
+          <ul class="bullets">
             <For each={arc().subArcs}>
               {(sub: ArcType) => (
                 <li class="clickable" onclick={() => props.openArc(sub)}>
@@ -118,7 +119,7 @@ export default function Arc(props: ArcProps) {
             </For>
           </ul>
         </div>
-        <div class="section">
+        <div class="card">
           <div class="sectionTitle">
             <h3>Information</h3>
             <span onclick={addInformation}>+</span>
@@ -134,7 +135,7 @@ export default function Arc(props: ArcProps) {
             </For>
           </ul>
         </div>
-        <div class="section">
+        <div class="card">
           <div class="sectionTitle">
             <h3>Collections</h3>
             <span onclick={addCollection}>+</span>
@@ -150,7 +151,7 @@ export default function Arc(props: ArcProps) {
           </ul>
         </div>
         {getCollection() && (
-          <div class="section">
+          <div class="card">
             <div class="sectionTitle">
               <h3>{getCollection()?.name}</h3>
               <span onclick={addThing}>+</span>

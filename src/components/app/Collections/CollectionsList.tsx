@@ -25,11 +25,11 @@ export default function CollectionsList(props: CollectionListType) {
         <h1>Collections</h1>
         <button onclick={addCollection}>Add New</button>
       </div>
-      <ul class="collectionsList bullets">
+      <ul class="cardContainer bullets">
         <For each={collections()}>
           {(collection: CollectionType) => (
             <li
-              class="clickable"
+              class="clickable card"
               onclick={() => props.openCollection(collection)}
             >
               {collection.name}
