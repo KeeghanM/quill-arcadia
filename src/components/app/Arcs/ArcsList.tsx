@@ -24,7 +24,6 @@ export default function ArcsList(props: ArcListType) {
         collections: [],
       }
       setArcs([...arcs(), newArc])
-      console.log(arcs())
     }
   }
 

@@ -35,6 +35,7 @@ export default function Collection(props: CollectionProps) {
     const name = prompt("Collection name?")
     if (name) {
       const newCollection: CollectionType = {
+        id: Date.now().toString() + Math.round(Math.random() * 1000).toString(),
         name,
         things: [],
         subCollections: [],
