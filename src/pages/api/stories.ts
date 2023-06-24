@@ -7,7 +7,7 @@ export const get: APIRoute = async ({ params, request }) => {
   let session = await getSession(request)
   if (session) {
     const results = await DB.execute(
-      "SELECT * FROM stories s join users u on u.id = s.user_ID WHERE u.user_id = ?",
+      "SELECT * FROM stories s join users u on u.id = s.user_id WHERE u.user_id = ?",
       [session.session.user.id]
     )
     let stories: StoryType[] = []
@@ -39,7 +39,7 @@ export const post: APIRoute = async ({ params, request }) => {
       throw new Error(`No user found with user_id ${session.session.user.id}`)
     }
     await DB.execute(
-      "INSERT INTO stories (name, last_edited, user_ID) VALUES (?, ?, ?)",
+      "INSERT INTO stories (name, last_edited, user_id) VALUES (?, ?, ?)",
       [name, lastEdited, user.rows[0].id]
     )
 

@@ -1,7 +1,7 @@
 .stories {
   display: grid;
   gap: 1rem;
-  width: min(100% - 3rem, 40ch);
+  width: min(100% - 3rem, 50%);
   margin: auto;
   padding-top: 4rem;
 }
@@ -9,6 +9,7 @@
   padding: 2rem;
   border-radius: 1rem;
   background: var(--clr-secondary);
+  max-width: fit-content;
 }
 .story-card .name {
   font-family: var(--ff-accent);

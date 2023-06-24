@@ -1,11 +1,9 @@
 import { createSignal } from "solid-js"
-import { Arcs, Collections } from "./dummyValues"
 
-import type { ArcType, CollectionType, ThingType } from "./types"
+import type { ArcType, CollectionType } from "./types"
 
-const [arcs, setArcs] = createSignal<ArcType[]>(Arcs)
-const [collections, setCollections] =
-  createSignal<CollectionType[]>(Collections)
+const [arcs, setArcs] = createSignal<ArcType[]>([])
+const [collections, setCollections] = createSignal<CollectionType[]>([])
 const [status, setStatus] = createSignal(
   "loading" as "loading" | "loaded" | "error" | "saving" | "saved" | "error"
 )

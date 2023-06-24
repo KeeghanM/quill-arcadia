@@ -1,4 +1,5 @@
 export type ThingType = {
+  id: string
   name: string
   information: Record<string, string>
 }
