@@ -44,14 +44,16 @@ export default function CollectionsList(props: CollectionListType) {
       </div>
       <ul class="cardContainer bullets">
         <For each={collections()}>
-          {(collection: CollectionType) => (
-            <li
-              class="clickable card"
-              onclick={() => props.openCollection(collection)}
-            >
-              {collection.name}
-            </li>
-          )}
+          {(collection: CollectionType) =>
+            !collection.parentId && (
+              <li
+                class="clickable card"
+                onclick={() => props.openCollection(collection)}
+              >
+                {collection.name}
+              </li>
+            )
+          }
         </For>
       </ul>
     </>

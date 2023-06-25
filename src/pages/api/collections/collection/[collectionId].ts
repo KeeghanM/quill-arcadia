@@ -13,6 +13,7 @@ export const get: APIRoute = async ({ params, request }) => {
       `SELECT
                 c.id
                 , c.name
+                , c.parent_collection_id
             FROM
                 collections c
                 JOIN users u ON u.id = c.user_id
@@ -31,6 +32,7 @@ export const get: APIRoute = async ({ params, request }) => {
       name: collectionResult.rows[0].name,
       things: [],
       subCollections: [],
+      parentId: collectionResult.rows[0].parent_collection_id,
     }
 
     const thingsResult = await DB.execute(

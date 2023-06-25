@@ -95,7 +95,7 @@ export default function Collection(props: CollectionProps) {
 
   const closeCollection = () => {
     const updatedCollections = collections().map((elem: CollectionType) =>
-      elem.id === collections().id ? collections() : elem
+      elem.id === collection().id ? collection() : elem
     )
     setCollections(updatedCollections)
     setCollection(undefined)
