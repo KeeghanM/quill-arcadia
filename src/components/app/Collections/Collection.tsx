@@ -1,7 +1,7 @@
 import type { CollectionType, ThingType } from "../lib/types"
 
-import { useContext, createSignal, For } from "solid-js"
-import { CollectionContext } from "../Story"
+import { useContext, createSignal, For, onMount } from "solid-js"
+import { CollectionContext, StoryContext } from "../Story"
 import { toTitleCase } from "../lib/helpers"
 import { collections, setCollections } from "../lib/store"
 
@@ -11,6 +11,7 @@ type CollectionProps = {
 }
 
 export default function Collection(props: CollectionProps) {
+  const [storyId] = useContext(StoryContext)
   // @ts-ignore
   const [collection, setCollection] = useContext(CollectionContext)
   const [getThings, setThings] = createSignal<ThingType[]>(collection().things)
@@ -18,28 +19,70 @@ export default function Collection(props: CollectionProps) {
     collection().subCollections
   )
 
-  const addThing = () => {
+  onMount(async () => {
+    const collectionId = collection().id
+    const dbCollection = await fetch(
+      `/api/collections/collection/${collectionId}`
+    ).then((res) => res.json())
+    setCollection(dbCollection)
+    setSubCollections(dbCollection.subCollections)
+    setThings(dbCollection.things)
+  })
+
+  const addThing = async () => {
     const name = prompt("Thing name?")
     if (name) {
       const newThing: ThingType = {
+        id: "",
         name,
         information: {},
       }
+      const response = await fetch("/api/things/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: newThing.name,
+          collectionId: collection().id,
+        }),
+      })
+      const data = await response.json()
+      const thingId = data.thingId
+      newThing.id = thingId
+
       // @ts-ignore
       collection().things = [...collection().things, newThing]
       setThings(collection().things)
     }
   }
 
-  const addCollection = () => {
+  const addCollection = async () => {
     const name = prompt("Collection name?")
     if (name) {
       const newCollection: CollectionType = {
-        id: Date.now().toString() + Math.round(Math.random() * 1000).toString(),
+        id: "",
         name,
         things: [],
         subCollections: [],
+        parentId: collection().id,
       }
+
+      const response = await fetch("/api/collections/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: newCollection.name,
+          parentId: newCollection.parentId,
+          storyId,
+        }),
+      })
+      const data = await response.json()
+      const collectionId = data.collectionId
+      newCollection.id = collectionId
+
       if (!collection().subCollections) collection().subCollections = []
       // @ts-ignore
       collection().subCollections = [

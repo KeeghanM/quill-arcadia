@@ -31,5 +31,5 @@ export const post: APIRoute = async ({ params, request }) => {
       status: 200,
     })
   }
-  return new Response(null, { status: 403 })
+  return new Response(null, { status: 401 })
 }

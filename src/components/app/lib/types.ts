@@ -9,6 +9,7 @@ export type CollectionType = {
   name: string
   things: ThingType[]
   subCollections?: CollectionType[]
+  parentId?: string
 }
 
 export type ArcType = {
