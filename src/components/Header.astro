@@ -76,19 +76,19 @@ import { Icon } from "astro-icon"
         </li>
       </ul>
     </div>
-
-    <script>
-      const header = document.querySelector("nav")
-
-      window.addEventListener("scroll", () => {
-        if (window.scrollY < 300) {
-          header?.classList.add("bg-[rgba(0,0,0,0.5)]")
-          header?.classList.remove("bg-[rgb(255,90,31)]")
-        } else {
-          header?.classList.add("bg-[rgb(255,90,31)]")
-          header?.classList.remove("bg-[rgba(0,0,0,0.5)]")
-        }
-      })
-    </script>
   </div>
 </nav>
+
+<script>
+  const header = document.querySelector("nav")
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < 300) {
+      header?.classList.add("bg-[rgba(0,0,0,0.5)]")
+      header?.classList.remove("bg-[rgb(255,90,31)]")
+    } else {
+      header?.classList.add("bg-[rgb(255,90,31)]")
+      header?.classList.remove("bg-[rgba(0,0,0,0.5)]")
+    }
+  })
+</script>
