@@ -1,10 +1,10 @@
-export type ThingType = {
+export type Thing = {
   id: string
   name: string
   information: Record<string, string>
 }
 
-export type CollectionType = {
+export type Collection = {
   id: string
   name: string
   things: ThingType[]
@@ -12,7 +12,7 @@ export type CollectionType = {
   parentId?: string
 }
 
-export type ArcType = {
+export type Arc = {
   id: string
   name: string
   information: Record<string, string>
@@ -20,7 +20,7 @@ export type ArcType = {
   collections: string[]
 }
 
-export type StoryType = {
+export type Story = {
   id: string
   name: string
   lastEdited: string
