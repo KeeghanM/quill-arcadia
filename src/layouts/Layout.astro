@@ -26,32 +26,9 @@ import Header from "../components/Header.astro"
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-gray-900">
     {!noNav?<Header /> : <></>}
     <slot />
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
   </body>
 </html>
-<style is:global>
-  :root {
-    --clr-text: hsl(0, 0%, 100%);
-    --clr-background: hsl(204, 100%, 1%);
-    --clr-primary: hsl(24, 85%, 50%);
-    --clr-secondary: hsl(208, 83%, 17%);
-    --clr-accent: hsl(89, 85%, 33%);
-
-    --gdr-l2r: linear-gradient(to right, var(--clr-accent), var(--clr-primary));
-
-    --ff-base: "Quattrocento Sans", sans-serif;
-    --ff-accent: "Quattrocento", serif;
-
-    --fs-300: clamp(0.8rem, calc(0.78rem + 0.06vw), 1rem);
-    --fs-400: clamp(1rem, calc(0.91rem + 0.43vw), 1.25rem);
-    --fs-500: clamp(1.2rem, calc(1.04rem + 0.81vw), 1.67rem);
-    --fs-600: clamp(1.44rem, calc(1.17rem + 1.36vw), 2.22rem);
-    --fs-700: clamp(1.73rem, calc(1.3rem + 2.14vw), 2.96rem);
-    --fs-800: clamp(2.07rem, calc(1.42rem + 3.26vw), 3.95rem);
-    --fs-900: clamp(2.49rem, calc(1.52rem + 4.82vw), 5.26rem);
-  }
-</style>
-```

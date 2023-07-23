@@ -2,7 +2,9 @@
 import Layout from "../layouts/Layout.astro"
 import Hero from "../components/index/Hero.astro"
 import ContactForm from "../components/index/ContactForm.astro"
-import CTASection from "../components/index/CTASection.astro"
+import About from "../components/index/About.astro"
+import Features from "../components/index/Features.astro"
+import CTA from "../components/index/CTA.astro"
 ---
 
 <Layout
@@ -11,9 +13,9 @@ import CTASection from "../components/index/CTASection.astro"
   noNav={false}
 >
   <Hero />
-  <CTASection
+  <About
     title="Craft Compelling & Engaging Stories"
-    anchor="features"
+    anchor="about"
     image={{
       "src": "./arcs.webp",
       "alt":
@@ -29,15 +31,14 @@ import CTASection from "../components/index/CTASection.astro"
     keep your audience captivated. Utilize our unique Arc framework to weave
     together your 'things' - be it characters, locations, or items - and easily
     reference them later. With every new Arc, a new story unfolds.
-  </CTASection>
-  <CTASection
+  </About>
+  <About
     title="Perfect for Storytellers of All Levels"
     image={{
       src: "./diverse_party.webp",
       alt: "A painting of a diverse group of D&D Characters, from fresh faced to grizzled adventurers.",
       side: "right",
     }}
-    anchor="features-1"
     cta={{
       "text": "Get Started Now",
       "link": "/signup",
@@ -47,14 +48,13 @@ import CTASection from "../components/index/CTASection.astro"
     storyteller, ArcAide simplifies and enhances your creative process. Our tool
     is easy to use, fun, and capable of handling the complexity of your
     imagination.
-  </CTASection>
-  <CTASection
+  </About>
+  <About
     title="Your One-Stop Solution for World Building"
     image={{
       src: "./wizard_portals_3.webp",
       alt: "A wizard, standing in front of a portal, with a glowing staff in hand.",
     }}
-    anchor="features-2"
     cta={{
       "text": "Sign Up for Free",
       "link": "/signup",
@@ -64,7 +64,16 @@ import CTASection from "../components/index/CTASection.astro"
     helping you manage and organize your narratives, providing seamless
     switching between story arcs and ensuring a smooth and enjoyable experience
     for both the writer and the end user.
-  </CTASection>
+  </About>
+  <Features />
+  <CTA
+    title="Ready to get started?"
+    description="Sign up for free today!"
+    cta={{
+      "text": "Sign Up",
+      "link": "/signup",
+    }}
+  />
   <ContactForm />
 </Layout>
 
