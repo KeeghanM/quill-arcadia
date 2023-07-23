@@ -1,9 +1,13 @@
 ---
-import { Icon } from "astro-icon"
+export interface Props {
+  sticky: boolean
+}
+const { sticky } = Astro.props
 ---
 
 <nav
-  class="bg-[rgba(0,0,0,0.5)] fixed w-full z-20 top-0 left-0 transition-all duration-700 ease-in-out"
+  class={"w-full z-20 top-0 left-0 transition-all duration-700 ease-in-out" +
+    (sticky ? " bg-[rgba(0,0,0,0.5)] fixed" : " bg-[rgb(255,90,31)]")}
 >
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"

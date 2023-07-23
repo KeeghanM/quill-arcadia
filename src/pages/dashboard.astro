@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro"
 import App from "../components/app/App"
 
-import { Auth, SignOut } from "auth-astro/components"
+import { Auth } from "auth-astro/components"
 import { getSession } from "auth-astro/server"
 
 let session = await getSession(Astro.request)
@@ -13,6 +13,7 @@ if (!session) return Astro.redirect("/signup")
   title="QuillArcadia - Dashboard"
   description="Metadescription"
   noNav={true}
+  stickyHeader={false}
 >
   <Auth>
     <button id="logout"
@@ -34,13 +35,14 @@ if (!session) return Astro.redirect("/signup")
 
 <script>
   const { signOut } = await import("auth-astro/client")
-  document.querySelector("#logout").onclick = () => signOut()
+  document.querySelector("#logout")?.addEventListener("click", () => {
+    signOut()
+  })
 </script>
 
 <style>
   button#logout {
     margin-left: 1.5rem;
-    font-size: var(--fs-400);
     color: white;
     text-decoration: none;
     position: fixed;
@@ -50,8 +52,12 @@ if (!session) return Astro.redirect("/signup")
     gap: 10px;
     background: none;
     border: none;
-    bottom: 2rem;
+    top: 2rem;
+    right: 1rem;
     padding: 0;
     z-index: 2;
+  }
+  button#logout:hover {
+    color: orange;
   }
 </style>

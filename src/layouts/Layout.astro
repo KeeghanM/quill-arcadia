@@ -2,10 +2,11 @@
 export interface Props {
   title: string
   description: string
-  noNav: boolean | undefined
+  noNav: boolean 
+  stickyHeader: boolean 
 }
 
-const { title, description,noNav } = Astro.props
+const { title, description,noNav,stickyHeader } = Astro.props
 
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
@@ -28,7 +29,7 @@ import Header from "../components/Header.astro"
     <title>{title}</title>
   </head>
   <body class="bg-gray-900 text-white">
-    {!noNav?<Header /> : <></>}
+    {!noNav?<Header sticky={stickyHeader} /> : <></>}
     <slot />
     <Footer />
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
