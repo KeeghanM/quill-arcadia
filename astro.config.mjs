@@ -10,4 +10,7 @@ export default defineConfig({
   integrations: [solidJs(), auth(), tailwind()],
   output: "server",
   adapter: vercel(),
+  vite: {
+    optimizeDeps: { exclude: ["auth:config"] },
+  },
 })
