@@ -11,6 +11,7 @@ const [collections, setCollections] = createSignal<Collection[]>([])
 const [currentCollection, setCurrentCollection] = createSignal<
   Collection | undefined
 >(undefined)
+const [error, setError] = createSignal<string | undefined>(undefined)
 const [status, setStatus] = createSignal(
   "loading" as "loading" | "loaded" | "error" | "saving" | "saved" | "error"
 )
@@ -41,4 +42,6 @@ export {
   setStatus,
   screen,
   setScreen,
+  error,
+  setError,
 }

@@ -1,16 +1,16 @@
 import type { APIRoute } from "astro"
-import type { StoryType } from "../../components/app/lib/types"
-import { DB } from "./databaseConnection"
+import { DB } from "../databaseConnection"
 import { getSession } from "auth-astro/server"
+import type { Story } from "../../../components/app/lib/types"
 
 export const get: APIRoute = async ({ params, request }) => {
   let session = await getSession(request)
   if (session) {
     const results = await DB.execute(
-      "SELECT * FROM stories s join users u on u.id = s.user_id WHERE u.user_id = ?",
+      "SELECT s.id, s.name, s.last_edited FROM stories s join users u on u.id = s.user_id WHERE u.user_id = ?",
       [session.session.user.id]
     )
-    let stories: StoryType[] = []
+    let stories: Story[] = []
     for (let i = 0; i < results.rows.length; i++) {
       stories.push({
         id: results.rows[i].id,
@@ -23,7 +23,12 @@ export const get: APIRoute = async ({ params, request }) => {
       status: 200,
     })
   }
-  return new Response(null, { status: 401 })
+  return new Response(
+    JSON.stringify({
+      message: "No session found",
+    }),
+    { status: 401 }
+  )
 }
 
 export const post: APIRoute = async ({ params, request }) => {
@@ -38,14 +43,22 @@ export const post: APIRoute = async ({ params, request }) => {
     if (user.rows.length === 0) {
       throw new Error(`No user found with user_id ${session.session.user.id}`)
     }
-    await DB.execute(
+    const insert = await DB.execute(
       "INSERT INTO stories (name, last_edited, user_id) VALUES (?, ?, ?)",
       [name, lastEdited, user.rows[0].id]
     )
 
-    return new Response(JSON.stringify({ message: "success" }), {
-      status: 200,
-    })
+    return new Response(
+      JSON.stringify({ id: insert.insertId, message: "success" }),
+      {
+        status: 200,
+      }
+    )
   }
-  return new Response(null, { status: 401 })
+  return new Response(
+    JSON.stringify({
+      message: "No session found",
+    }),
+    { status: 401 }
+  )
 }
