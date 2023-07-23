@@ -2,154 +2,83 @@
 import { Icon } from "astro-icon"
 ---
 
-<div id="navBar">
-  <div>
-    <h2>ArcAide</h2>
-  </div>
-  <div>
-    <nav>
-      <ul>
+<nav
+  class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600"
+>
+  <div
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+  >
+    <a href="https://flowbite.com/" class="flex items-center">
+      <img
+        src="https://flowbite.com/docs/images/logo.svg"
+        class="h-8 mr-3"
+        alt="Flowbite Logo"
+      />
+      <span
+        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        >Flowbite</span
+      >
+    </a>
+    <div class="flex md:order-2">
+      <a
+        href="/dashboard"
+        type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >Dashboard</a
+      >
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-sticky"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"></path>
+        </svg>
+      </button>
+    </div>
+    <div
+      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      id="navbar-sticky"
+    >
+      <ul
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+      >
         <li>
-          <a href="/">Home</a>
+          <a
+            href="/"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Home</a
+          >
         </li>
         <li>
-          <a href="/#features">Features</a>
+          <a
+            href="/#features"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Features</a
+          >
         </li>
         <li>
-          <a href="/#contact">Contact</a>
+          <a
+            href="/#contact"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Contact</a
+          >
         </li>
       </ul>
-    </nav>
+    </div>
   </div>
-  <div>
-    <a class="button" href="/dashboard"
-      >Dashboard <Icon name="mdi:chevron-double-right" /></a
-    >
-  </div>
-</div>
-
-<script>
-  let navBar = document.querySelector("div#navBar")
-  window.addEventListener("scroll", function () {
-    let scrollPosition = window.scrollY
-    if (!navBar) return
-    if (scrollPosition >= 200) {
-      navBar.classList.add("scrolled")
-    } else {
-      navBar.classList.remove("scrolled")
-    }
-  })
-</script>
-
-<style>
-  div#navBar {
-    position: fixed;
-    top: 0;
-    background-color: rgba(255, 255, 255, 0.3);
-    width: 100vw;
-    display: flex;
-    transition: background-color 1500ms ease;
-    justify-content: space-around;
-    padding: 1rem;
-    align-items: center;
-  }
-  :global(div#navBar.scrolled) {
-    background-color: var(--clr-secondary) !important;
-    color: #fff;
-  }
-  :global(div#navBar.scrolled) h2 {
-    transition: color 1500ms ease;
-    color: #fff !important;
-  }
-
-  nav {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  nav ul {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    list-style: none;
-  }
-  nav li {
-    position: relative;
-  }
-  nav li::after {
-    content: "";
-    background: var(--clr-primary);
-    width: 0%;
-    height: 2px;
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    transition: width 300ms;
-  }
-  li > a {
-    color: var(--clr-secondary);
-    text-decoration: none;
-    transition: color 1500ms ease;
-    font-size: var(--fs-600);
-  }
-  :global(div#navBar.scrolled) li > a {
-    color: var(--clr-text);
-  }
-
-  nav li:hover {
-    cursor: pointer;
-  }
-  nav li:hover::after {
-    width: 100%;
-  }
-
-  a.button {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 100vw;
-    border: none;
-    position: relative;
-    background: var(--gdr-l2r);
-    color: var(--clr-text);
-    isolation: isolate;
-  }
-  a.button::before {
-    content: "";
-    position: absolute;
-    border-radius: 500vw;
-    inset: 1px;
-    background: var(--clr-background);
-    z-index: -1;
-  }
-
-  a.button::after {
-    content: "";
-    position: absolute;
-    border-radius: 500vw;
-    background: var(--clr-primary);
-    z-index: -2;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 300ms;
-  }
-
-  a.button:hover::after {
-    opacity: 1;
-  }
-  [astro-icon] {
-    transition: color 300ms;
-    width: 30px;
-  }
-  a.button:hover [astro-icon] {
-    color: var(--clr-primary);
-  }
-
-  @media only screen and (max-width: 425px) {
-    nav {
-      display: none;
-    }
-  }
-</style>
+</nav>
