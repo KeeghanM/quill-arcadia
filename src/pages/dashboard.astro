@@ -9,7 +9,11 @@ let session = await getSession(Astro.request)
 if (!session) return Astro.redirect("/signup")
 ---
 
-<Layout title="ArcAide - Dashboard" description="Metadescription" noNav={true}>
+<Layout
+  title="QuillArcadia - Dashboard"
+  description="Metadescription"
+  noNav={true}
+>
   <Auth>
     <button id="logout"
       >Sign Out

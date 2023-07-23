@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon"
 import Anchor from "../Anchor.astro"
 const features = [
   {
@@ -7,21 +6,21 @@ const features = [
     "icon":
       '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M18.955 2.045a.75.75 0 0 1 0 1.06l-.55.551c3.288 3.831 3.118 9.61-.51 13.238a9.712 9.712 0 0 1-6.145 2.827v1.53h1.75a.75.75 0 1 1 0 1.5h-5a.75.75 0 0 1 0-1.5h1.75v-1.53a9.709 9.709 0 0 1-5.594-2.316l-.55.55a.75.75 0 0 1-1.061-1.06l.707-.708A1.272 1.272 0 0 1 5.5 16.15a8.222 8.222 0 0 0 5.497 2.101h.006A8.25 8.25 0 0 0 17.15 4.5a1.272 1.272 0 0 1 .038-1.748l.707-.707a.75.75 0 0 1 1.061 0Z"/><path fill="currentColor" fill-rule="evenodd" d="M4.25 10a6.75 6.75 0 1 1 13.5 0a6.75 6.75 0 0 1-13.5 0ZM11 4.75a5.25 5.25 0 0 0-5.159 6.23a2.25 2.25 0 1 1 2.56 3.583a5.252 5.252 0 0 0 7.746-3.522a3.75 3.75 0 1 1-2.89-5.782A5.23 5.23 0 0 0 11 4.75ZM10.75 9a2.25 2.25 0 1 1 4.5 0a2.25 2.25 0 0 1-4.5 0ZM7.5 11.75a.75.75 0 1 0 0 1.5a.75.75 0 0 0 0-1.5Z" clip-rule="evenodd"/></svg>',
     "description":
-      "With Arc-Aide, you have the power to create anything you can imagine for your world. From cities and creatures to unique artifacts, it's all at your fingertips. Create, customize, and store your ideas in easy-to-access collections for quick reference during gameplay.",
+      "With QuillArcadia, you have the power to create anything you can imagine for your world. From cities and creatures to unique artifacts, it's all at your fingertips. Create, customize, and store your ideas in easy-to-access collections for quick reference during gameplay.",
   },
   {
     "title": "Story Arcs to Enhance Narrative",
     "icon":
       '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16"><path fill="currentColor" d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z"/></svg>',
     "description":
-      "Every great story follows an arc, and at Arc-Aide, we've built that structure into the fabric of our tool. Define your protagonists, goals, hooks, and challenges to create engaging and compelling narratives that will captivate your players.",
+      "Every great story follows an arc, and at QuillArcadia, we've built that structure into the fabric of our tool. Define your protagonists, goals, hooks, and challenges to create engaging and compelling narratives that will captivate your players.",
   },
   {
     "title": "Integrated Campaign Management",
     "icon":
       '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 384 512"><path fill="currentColor" d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128v320c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64h-37.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64a32 32 0 1 1 0-64zm113 209L177 401c-9.4 9.4-24.6 9.4-33.9 0L79 337c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L271 239c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>',
     "description":
-      "Arc-Aide is not only a world-building tool but also your campaign's hub. Record your adventures and use them as a living history of your stories, tracking the journey of your players and the development of your world.",
+      "QuillArcadia is not only a world-building tool but also your campaign's hub. Record your adventures and use them as a living history of your stories, tracking the journey of your players and the development of your world.",
   },
   {
     "title": "Quality Content with Ease",
@@ -35,14 +34,14 @@ const features = [
     "icon":
       '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9A3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42c-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3a3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3a3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.536 5.536 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13v-1.75M0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9c-.59.68-.95 1.62-.95 2.65V20H0m24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65c2.56.34 4.45 1.51 4.45 2.9V20Z"/></svg>',
     "description":
-      "Whether you're a Dungeon Master leading a group through a treacherous cave or a Storyteller crafting a vampire's tale in a gothic city, Arc-Aide is your ally. Our tools are designed to be flexible and adaptable to any tabletop RPG setting.",
+      "Whether you're a Dungeon Master leading a group through a treacherous cave or a Storyteller crafting a vampire's tale in a gothic city, QuillArcadia is your ally. Our tools are designed to be flexible and adaptable to any tabletop RPG setting.",
   },
   {
     "title": "Prepare for the Future of Collaboration",
     "icon":
       '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 36 36"><path fill="currentColor" d="M23.86 29.15H12.11a.8.8 0 1 0 0 1.6h11.75a.8.8 0 0 0 0-1.6Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="currentColor" d="M22 32.15h-8a.8.8 0 1 0 0 1.6h8a.8.8 0 1 0 0-1.6Z" class="clr-i-solid clr-i-solid-path-2"/><path fill="currentColor" d="M18 2.25a11 11 0 0 0-11 11a10.68 10.68 0 0 0 1 4.63a16.36 16.36 0 0 0 1.12 1.78a17 17 0 0 1 2 3.47a16.19 16.19 0 0 1 .59 4h5.69v-5.52l-2.86-3.13l3-3a.8.8 0 0 1 1.13 1.13l-1.89 1.89L19 21v6.17h5.3a16.19 16.19 0 0 1 .59-4a17 17 0 0 1 2-3.47A16.31 16.31 0 0 0 28 17.86a10.68 10.68 0 0 0 1-4.63A11 11 0 0 0 18 2.25Zm.45 9.75l-2.73 2.73a.8.8 0 1 1-1.13-1.13l2.73-2.73A.8.8 0 1 1 18.45 12Z" class="clr-i-solid clr-i-solid-path-3"/><path fill="none" d="M0 0h36v36H0z"/></svg>',
     "description":
-      "We're continually developing Arc-Aide with features to take your world-building to the next level. Stay tuned for future updates, including collaboration tools that will allow sharing campaigns, getting feedback, and creating together with other users. Remember, we're just starting our journey, and your feedback is essential to us. Join us and help shape the future of world-building and storytelling!",
+      "We're continually developing QuillArcadia with features to take your world-building to the next level. Stay tuned for future updates, including collaboration tools that will allow sharing campaigns, getting feedback, and creating together with other users. Remember, we're just starting our journey, and your feedback is essential to us. Join us and help shape the future of world-building and storytelling!",
   },
 ]
 ---
@@ -55,8 +54,8 @@ const features = [
         Unleash Your Storytelling Potential
       </h2>
       <p class="text-gray-400 text-xl">
-        Welcome to Arc-Aide, where we empower storytellers to bring their vivid
-        imaginations to life with structure, clarity, and creativity. We
+        Welcome to QuillArcadia, where we empower storytellers to bring their
+        vivid imaginations to life with structure, clarity, and creativity. We
         understand the challenges faced by dungeon masters, authors, and world
         builders in managing their complex narratives. That's why we have
         meticulously crafted our platform to help streamline your creative

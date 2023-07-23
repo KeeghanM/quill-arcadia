@@ -4,31 +4,16 @@ import Layout from "../layouts/Layout.astro"
 import Pricing from "../components/Pricing.astro"
 import { getSession } from "auth-astro/server"
 const session = await getSession(Astro.request)
+if (session) {
+  Astro.redirect("/dashboard")
+}
 ---
 
 <Layout title="Signup" description="This is the home page" noNav={false}>
   <div class="w-full pt-12 min-h-[100vh] px-12 grid place-items-center">
-    {
-      session ? (
-        <>
-          <About
-            title="Thanks for registering!"
-            cta={{ "text": "Go to dashboard", "link": "/dashboard" }}
-            image={{
-              src: "./arcs.webp",
-              alt: "An adventuring party, in ancient ruins, gathered around a glowing blue orb, wrapped in metal bands.",
-            }}
-          >
-            Welcome to ArcAide! We're excited to have you here. You can now go
-            to your dashboard and start creating your first Stories.
-          </About>
-        </>
-      ) : (
-        <Pricing
-          title="Ready to weave more engaging tales and epic adventures?"
-          description="Arc-Aide is your personal assistant for creating, managing, and organizing your narratives. Whether you're a Dungeon Master preparing for your next campaign or an author looking to bring your characters to life, Arc-Aide has you covered."
-        />
-      )
-    }
+    <Pricing
+      title="Ready to weave more engaging tales and epic adventures?"
+      description="QuillArcadia is your personal assistant for creating, managing, and organizing your narratives. Whether you're a Dungeon Master preparing for your next campaign or an author looking to bring your characters to life, QuillArcadia has you covered."
+    />
   </div>
 </Layout>
