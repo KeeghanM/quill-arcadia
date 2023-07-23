@@ -1,5 +1,5 @@
 import type { Story } from "../lib/types"
-import { currentStory, setCurrentStory, setScreen } from "../store"
+import { currentStory, setCurrentStory, setError, setScreen } from "../store"
 
 type Props = {
   story: Story | undefined

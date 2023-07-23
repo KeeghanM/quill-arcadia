@@ -29,7 +29,8 @@ export default function StoryCreate(props: Props) {
       body: JSON.stringify(newStory),
     })
     if (!response.ok) {
-      setError("Failed to create story")
+      const error = await response.json()
+      setError("Failed to create story: " + (error.message || "Unknown error"))
       return
     }
     newStory.id = (await response.json()).id

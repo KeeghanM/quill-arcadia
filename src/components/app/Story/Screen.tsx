@@ -34,7 +34,8 @@ export default function StoryScreen() {
       }),
     })
     if (!response.ok) {
-      setError("Failed to update story")
+      const error = await response.json()
+      setError("Failed to update story: " + (error.message || "Unknown error"))
       return
     }
     const updatedStory: Story = await response.json()
@@ -49,7 +50,8 @@ export default function StoryScreen() {
       method: "DELETE",
     })
     if (!response.ok) {
-      setError("Failed to delete story")
+      const error = await response.json()
+      setError("Failed to delete story: " + (error.message || "Unknown error"))
       return
     }
     setStatus("loaded")
