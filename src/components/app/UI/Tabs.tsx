@@ -1,4 +1,5 @@
 import { currentStory, screen, setScreen } from "../store"
+import { signOut } from "auth-astro/client"
 
 export default function Tabs() {
   const classes = {
@@ -8,6 +9,8 @@ export default function Tabs() {
       "inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500",
     "default":
       "inline-block p-4 border-b-2 border-transparent rounded-t-lg text-white hover:text-orange-300 hover:border-orange-300",
+    "signOut":
+      "flex gap-2 items-center p-4 border-b-2 border-transparent rounded-t-lg text-white hover:text-red-600 hover:border-red-600",
   }
 
   const navigateToHome = () => {
@@ -76,6 +79,22 @@ export default function Tabs() {
             }
           >
             Collections
+          </button>
+        </li>
+        <li class="mr-2">
+          <button onclick={() => signOut()} class={classes.signOut}>
+            Sign Out{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M19 3H5c-1.11 0-2 .89-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-8.92 12.58L11.5 17l5-5l-5-5l-1.42 1.41L12.67 11H3v2h9.67l-2.59 2.58Z"
+              ></path>
+            </svg>
           </button>
         </li>
       </ul>
