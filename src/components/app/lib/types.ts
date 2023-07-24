@@ -7,8 +7,8 @@ export type Thing = {
 export type Collection = {
   id: string
   name: string
-  things: ThingType[]
-  subCollections?: CollectionType[]
+  things: Thing[]
+  subCollections?: Collection[]
   parentId?: string
 }
 
@@ -17,7 +17,7 @@ export type Arc = {
   parentId?: string
   name: string
   information: Record<string, string>
-  subArcs?: ArcType[]
+  subArcs?: Arc[]
   collections: string[]
 }
 

@@ -25,6 +25,8 @@ const [screen, setScreen] = createSignal(
     | "collection"
 )
 
+const [search, setSearch] = createSignal("" as string)
+
 export {
   stories,
   setStories,
@@ -44,4 +46,6 @@ export {
   setScreen,
   error,
   setError,
+  search,
+  setSearch,
 }
