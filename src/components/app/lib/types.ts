@@ -14,6 +14,7 @@ export type Collection = {
 
 export type Arc = {
   id: string
+  parentId?: string
   name: string
   information: Record<string, string>
   subArcs?: ArcType[]

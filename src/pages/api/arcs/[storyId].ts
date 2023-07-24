@@ -9,12 +9,14 @@ export const get: APIRoute = async ({ params, request }) => {
     const results = await DB.execute(
       `SELECT 
         a.id,
+        sa.arc_id as parent_id,
         a.name,
         ai.value as hook
       FROM 
         arcs a 
         join users u on u.id = a.user_id
         left join arc_information ai on ai.arc_id = a.id and ai.name = 'hook'
+        left join arc_arcs sa on a.id = sa.sub_arc_id
     WHERE 
         u.user_id = ? 
         AND a.story_id = ?
@@ -25,6 +27,7 @@ export const get: APIRoute = async ({ params, request }) => {
     for (let i = 0; i < results.rows.length; i++) {
       let newArc = {
         id: results.rows[i].id,
+        parentId: results.rows[i].parent_id || "",
         name: results.rows[i].name,
         information: { hook: results.rows[i].hook },
       }

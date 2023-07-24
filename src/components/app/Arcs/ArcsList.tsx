@@ -1,65 +1,46 @@
-import { For, useContext } from "solid-js"
+import { JSXElement, createSignal, onMount } from "solid-js"
+import { arcs, currentStory, setArcs, setCurrentArc } from "../store"
+import type { Arc } from "../lib/types"
 
-import { arcs, setArcs } from "../lib/store"
-import type { ArcType } from "../lib/types"
-import ArcCard from "./ArcListCard"
-import { StoryContext } from "../Story"
+export default function ArcsList() {
+  const [arcList, setArcList] = createSignal<JSXElement[]>([])
 
-type ArcListType = {
-  openArc: (arc: ArcType) => void
-}
-
-export default function ArcsList(props: ArcListType) {
-  const [storyId] = useContext(StoryContext)
-
-  const addArc = async () => {
-    const name = prompt("Arc name?")
-    if (name) {
-      const newArc: ArcType = {
-        id: "",
-        name,
-        information: {
-          hook: "",
-          goal: "",
-          challenge: "",
-          antagonist: "",
-        },
-        subArcs: [],
-        collections: [],
-      }
-      const response = await fetch("/api/arcs/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: newArc.name,
-          information: newArc.information,
-          storyId,
-        }),
-      })
-      const data = await response.json()
-      const arcId = data.arcId
-
-      newArc.id = arcId
-
-      setArcs([...arcs(), newArc])
-    }
+  const recurrentArc = (arc: Arc): JSXElement => {
+    const subArcs = arcs().filter((a) => a.parentId === arc.id)
+    return (
+      <>
+        <li class="flex flex-col gap-2 bg-[rgba(255,255,255,0.1)] border border-[rgba(255,255,255,0.2)] rounded-lg m-2 cursor-pointer">
+          <span
+            onclick={() => setCurrentArc(arc)}
+            class={
+              "p-4 border-b-2 border-transparent text-white hover:text-orange-500" +
+              (subArcs.length > 0 ? " pb-0" : "")
+            }
+          >
+            {arc.name}
+          </span>
+          {subArcs.length === 0 ? null : (
+            <ul>{subArcs.map((subArc) => recurrentArc(subArc))}</ul>
+          )}
+        </li>
+      </>
+    )
   }
 
-  return (
-    <>
-      <div class="screenTitle">
-        <h1>Arcs</h1>
-        <button onclick={addArc}>Add New</button>
-      </div>
-      <div class="cardContainer">
-        <For each={arcs()}>
-          {(arc: ArcType) => (
-            <ArcCard arc={arc} openArc={(arc: ArcType) => props.openArc(arc)} />
-          )}
-        </For>
-      </div>
-    </>
-  )
+  onMount(async () => {
+    const response = await fetch(`/api/arcs/${currentStory()?.id}`)
+    if (!response.ok) throw new Error("Failed to fetch arcs")
+
+    const data = await response.json()
+    if (!data) throw new Error("Failed to parse arcs")
+
+    setArcs(data)
+
+    arcs().map((arc) => {
+      if (arc.parentId) return
+      setArcList([...arcList(), recurrentArc(arc)])
+    })
+  })
+
+  return <ul class="overflow-y-auto h-[50vh]">{arcList()}</ul>
 }

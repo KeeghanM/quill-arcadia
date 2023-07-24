@@ -4,6 +4,7 @@ import Tabs from "./UI/Tabs"
 import StoryList from "./Story/List"
 import StoryScreen from "./Story/Screen"
 import Error from "./UI/Error"
+import ArcScreen from "./Arcs/Screen"
 
 type AppProps = {
   userId: string
@@ -24,6 +25,9 @@ export default function App(props: AppProps) {
         </Show>
         <Show when={screen() === "story"}>
           <StoryScreen />
+        </Show>
+        <Show when={screen() === "arcs"}>
+          <ArcScreen />
         </Show>
       </div>
     </UserContext.Provider>
