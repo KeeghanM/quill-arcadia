@@ -1,13 +1,13 @@
 import type { APIRoute } from "astro"
 import { DB } from "../../databaseConnection"
 import { getSession } from "auth-astro/server"
-import type { ArcType } from "../../../../components/app/lib/types"
+import type { Arc } from "../../../../components/app/lib/types"
 
 export const get: APIRoute = async ({ params, request }) => {
   let session = await getSession(request)
   if (session) {
     const { arcId } = params
-    let arc: ArcType
+    let arc: Arc
 
     const arcResult = await DB.execute(
       `SELECT
@@ -26,7 +26,7 @@ export const get: APIRoute = async ({ params, request }) => {
       arc = {
         id: arcResult.rows[0].id,
         name: arcResult.rows[0].name,
-        information: {},
+        information: [],
         collections: [],
         subArcs: [],
       }
@@ -45,8 +45,11 @@ export const get: APIRoute = async ({ params, request }) => {
       [arcId]
     )
     for (let i = 0; i < informationResult.rows.length; i++) {
-      arc.information[informationResult.rows[i].name] =
-        informationResult.rows[i].value
+      const info = {
+        key: informationResult.rows[i].name as string,
+        value: informationResult.rows[i].value as string,
+      }
+      arc.information.push(info)
     }
 
     const collectionsResult = await DB.execute(

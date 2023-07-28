@@ -1,6 +1,7 @@
 import ArcsList from "./List"
 import Arc from "./Arc"
 import ArcSearch from "./Search"
+import { currentArc } from "../store"
 
 export default function ArcScreen() {
   return (
@@ -12,7 +13,7 @@ export default function ArcScreen() {
         </div>
         <ArcsList />
       </div>
-      <Arc />
+      <div class="p-6">{currentArc() && <Arc />}</div>
     </div>
   )
 }

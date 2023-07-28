@@ -1,5 +1,5 @@
 import type { Story } from "../lib/types"
-import { currentStory, setCurrentStory, setError, setScreen } from "../store"
+import { currentStory, setCurrentStory, setScreen } from "../store"
 
 type Props = {
   story: Story | undefined
@@ -10,7 +10,7 @@ export default function StoryCard(props: Props) {
     if (!props.story) return
 
     setCurrentStory(props.story)
-    setScreen("story")
+    setScreen("arcs")
   }
 
   return (

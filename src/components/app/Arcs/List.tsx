@@ -9,7 +9,7 @@ export default function ArcsList() {
     const subArcs = arcs().filter((a) => a.parentId === arc.id)
     return arc.name.toLowerCase().includes(search().toLowerCase()) ? (
       <>
-        <li class="flex flex-col gap-2 bg-[rgba(255,255,255,0.1)] border border-[rgba(255,255,255,0.2)] rounded-lg m-2 cursor-pointer">
+        <li class="flex flex-col gap-2 bg-[rgba(115,115,115,0.1)] border border-gray-600 rounded-lg m-2 cursor-pointer">
           <span
             onclick={() => setCurrentArc(arc)}
             class={

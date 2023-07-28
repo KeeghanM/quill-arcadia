@@ -16,9 +16,9 @@ export type Arc = {
   id: string
   parentId?: string
   name: string
-  information: Record<string, string>
+  information: { key: string; value: string }[]
+  collections: { id: string; name: string }[]
   subArcs?: Arc[]
-  collections: string[]
 }
 
 export type Story = {
