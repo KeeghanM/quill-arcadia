@@ -1,15 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import App from "../components/app/App"
+
+import { Auth } from "auth-astro/components"
+import { getSession } from "auth-astro/server"
+
+let session = await getSession(Astro.request)
+if (!session) return Astro.redirect("/signup")
 ---
 
-<Layout title="ArcAide - Dashboard" description="Metadescription">
-  <div class="wrapper">Coming soon...</div>
+<Layout
+  title="QuillArcadia - Dashboard"
+  description="Metadescription"
+  noNav={true}
+  stickyHeader={false}
+>
+  <Auth>
+    {/* Empty div fixes an error, dunno why */}
+    <div></div>
+    <App client:load userId={session.session.user.id} />
+  </Auth>
 </Layout>
-
-<style>
-  div {
-    height: 100vh;
-    display: grid;
-    place-items: center;
-  }
-</style>
